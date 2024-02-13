@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HoussArtGallery- Accueil !{% endblock %}
+
+{% block body %}
+<body>
+<style>
+    .banner{
+        height:850px;
+        background:linear-gradient(rgba(0, 0, 0,.6),rgba(0, 0, 0,.6)),url(https://cdn.pixabay.com/photo/2016/09/04/12/38/living-room-1643855_1280.jpg) center center fixed no-repeat;
+        background-size:cover;
+    }
+    .banner h2{
+        font-size: 7rem;
+        font-weight: bold;
+        font-family: 'Ruthie', cursive;
+    }
+    .banner h1{
+        font-size: 8rem;
+        color: white;
+        font-family: 'Abril Fatface', serif;
+    }
+    .banner p{
+        color: white;
+        font-size: 2.3rem;
+        font-family: 'roboto', serif; 
+        padding: 2rem 0;
+
+    }
+	.banner a{
+		background: #caa502;
+		color: white;
+		text-decoration: none;
+		padding: 20px;
+		font-size: 1.3rem;
+		border-radius: 15px;
+		font-family: 'roboto', serif;
+	}
+	.banner a:hover{
+		background: #fff;
+		color: #caa502;
+	}
+</style>
+<div class="container-fluid banner d-flex justify-content-center align-items-center ">
+<div class="row container-fluid">
+    <section id="Home" class="col col-sm-12 col-md-9 col-lg-9 home d-flex-colomn justify-content-start align-items-center ">
+		<h2 class="homeParalexEffect text-warning">
+			Bienvenue sur
+        </h2>
+		<h1 class="homeParalexEffect text-white d-flex justify-content-center w-100 ">
+			Houss.Art.Gallery
+        </h1>
+        <p>Plongez au cœur de l'expression artistique,<br>
+         où chaque œuvre raconte une histoire unique. <br>
+         Laissez-vous emporter dans un voyage visuel inoubliable.</p>
+	</section>  
+    <span class="col-sm-12 col-md-3 col-lg-3 d-flex justify-content-center align-items-center ">
+		<a href="#">NOUS CONTACTER</a>
+	</span>
+</div>
+</div>
+<!-- Icons Container Start-->
+<div class="container bg">
+	<section class=" row iconsContainer">
+		<div class="icons">
+			<i class="fa-solid fa-code-branch"></i>
+			<div class="content">
+				<h3>100+</h3>
+				<p>Branches</p>
+			</div>
+		</div>
+
+		<div class="icons">
+			<i class="fa-solid fa-palette"></i>
+			<div class="content">
+				<h3>5800+</h3>
+				<p>tableaux Vendus</p>
+			</div>
+		</div>
+
+		<div class="icons">
+			<i class="fa-solid fa-face-smile-wink"></i>
+			<div class="content">
+				<h3>2560+</h3>
+				<p>Clients Satisfaits</p>
+			</div>
+		</div>
+
+		<div class="icons">
+			<i class="fa-solid fa-hand-holding-heart"></i>
+			<div class="content">
+				<h3>100+</h3>
+				<p>Nouveautés</p>
+			</div>
+		</div>
+	</section>
+</div>
+
+</body>
+{% endblock %}
