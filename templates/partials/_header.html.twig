@@ -1,0 +1,78 @@
+<header>
+	<div id="MenuBtn" class="fas fa-bars"></div>
+	 <a class="navbar-brand" href="#"><img data-speed="5" class="homeParalexEffect" width="120px" height="70px"src="{{ asset('images/logo siteart.png') }}" alt=""></a>
+
+	<nav class="navbar">
+		<a href="{{ path('home.index') }}">HOME</a>
+		<a href="#">NOS PRODUITS</a>
+		<a href="#">NOS COLLECTIONS</a>
+		<a href="./#Service">A PROPOS</a>
+		<a href="#">REVIEWS</a>
+		<a href="#">NOUS CONTACTER</a>
+	</nav>
+
+	{% if app.user and is_granted('ROLE_ADMIN') %}
+		<div class="dropdown mx-4">
+			<button class="btn dropdown-toggle m-0" type="button" data-bs-toggle="dropdown" aria-expanded="true">
+				Action
+			</button>
+			<ul class="dropdown-menu Action fs-5">
+				{# <li>
+					<a class="dropdown-item" href="{{ path('admin') }}">Dashboard</a>
+				</li> #}
+				<li>
+					<a class="dropdown-item" href="{{ path('products') }}">Nos Produits !</a>
+				</li>
+				<li>
+					<a class="dropdown-item" href="{{ path('products.new') }}">Nouveau Produit !</a>
+				</li>
+				<li>
+					<a class="dropdown-item" href="{{ path('collection.index') }}">Les arrivages !</a>
+				</li>
+				<li>
+					<a class="dropdown-item" href="{{ path('collection.new') }}">Nouveau Arrivage</a>
+				</li>
+				{# <li>
+					<a class="dropdown-item" href="{{ path('user.index') }}">Liste des utilisateurs</a>
+				</li> #}
+				<li>
+					{# <a class="dropdown-item" href="{{ path('review') }}">Liste des avis</a> #}
+				</li>
+				<li>
+					{# <a class="dropdown-item" href="{{ path('show.index') }}">MessagesContact</a> #}
+				</li>
+			</ul>
+		</div>
+	{% endif %}
+
+
+	{% if app.user %}
+		<div class="dropdown">
+			<button class="btn dropdown-toggle m-0" type="button" data-bs-toggle="dropdown" aria-expanded="true">
+				 {{ app.user.fullName}}
+			</button>
+			<ul class="dropdown-menu Action fs-5">
+				<li>
+					{% if 'ROLE_ADMIN' in app.user.roles %}
+						<a class="dropdown-item" href="{{ path('admin') }}">ADMINISTRATION</a>
+					{% endif %}
+				</li> 
+				<li>
+					<a class="dropdown-item" href="{{ path('user.edit', {id : app.user.id}) }}">Modifier Identity</a>
+				</li>
+				<li>
+					<a class="dropdown-item" href="{{ path('user.edit.password', {id : app.user.id}) }}">Modifier Password</a>
+				</li>
+				<li>
+					<a class="dropdown-item" href="{{ path('security.logout') }}">Déconnexion</a>
+				</li>
+			</ul>
+		</div>
+	{% else %}
+
+		<div id="LoginBtn">
+			{# <button class="btn"><a class="dropdown-item" href="{{ path('security.login') }}">SignUp</a></button> #}
+			<i class="fas fa-user"></i>
+		</div>
+	{% endif %}
+</header>
