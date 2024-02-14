@@ -10,7 +10,7 @@
         background-size:cover;
     }
     .title{
-        margin: 12rem 0;
+        margin: 15rem 0;
     }
     .heading{
         font-family: 'roboto';
@@ -32,12 +32,12 @@
         <div class="row title d-flex justify-content-center align-items-center">
             <div class="col-12 d-flex justify-content-center align-items-center text-white text-center">
             {% if not products.items is same as ([]) %}
-                <h1 class="heading fs-1">NOS PRODUITS</h1>
+                <h1 class="heading fs-1 py-4">NOS PRODUITS</h1>
             </div>
           
                 {# read and display just one flash message type #}
                {% for message in app.flashes('success') %}
-               <div class="alert alert-success mt-4">
+               <div class="alert alert-success my-5">
                 {{ message}}
                </div>
                {% endfor %}
@@ -45,7 +45,7 @@
             <button class="btn-warning px-3 py-3 my-3  fs-3">
                 {# <a class="text-white text-decoration-none" href="{{ path('products.new') }}">Créer un produit</a> #}
             </button>
-                <h2 class="fs-4 py-2">Il y'a {{ products.getTotalItemCount}} produits au total.</h2>
+                <h2 class="fs-4 py-4">Il y'a {{ products.getTotalItemCount}} produits au total.</h2>
             </div>
 
             <div class="col-10 d-flex justify-content-center align-items-center text-center ">
