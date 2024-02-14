@@ -51,22 +51,22 @@ class AppFixtures extends Fixture
         }
 
         // Collection
-        // for ($c = 0; $c < 30; $c++) {
-        //     $colletion = new Colletion();
-        //     $colletion->setName($this->faker->words(2, true))
-        //         ->setArtist($this->faker->words(2, true))
-        //         ->setCategory($categoryOptions[array_rand($categoryOptions)])
-        //         ->setDescription($this->faker->text(2000))
-        //         ->setPrice(mt_rand('20000', '100000'))
-        //         ->setIsFavorite(mt_rand(0, 1) == 1 ? true : false);
+        for ($c = 0; $c < 30; $c++) {
+            $colletion = new Colletion();
+            $colletion->setName($this->faker->words(2, true))
+                ->setArtist($this->faker->words(2, true))
+                ->setCategory($categoryOptions[array_rand($categoryOptions)])
+                ->setDescription($this->faker->text(2000))
+                ->setPrice(mt_rand('20000', '100000'))
+                ->setIsFavorite(mt_rand(0, 1) == 1 ? true : false);
 
-        //     for ($k = 0; $k < mt_rand(5, 15); $k++) {
+            for ($k = 0; $k < mt_rand(5, 15); $k++) {
 
-        //         $colletion->addProduct($product[mt_rand(0, count($product) - 1)]);
-        //     }
+                $colletion->addProduct($product[mt_rand(0, count($product) - 1)]);
+            }
 
-        //     $manager->persist($colletion);
-        // }
+            $manager->persist($colletion);
+        }
 
         // Users
         // $users = [];
