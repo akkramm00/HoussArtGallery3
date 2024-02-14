@@ -24,6 +24,9 @@ services:
     App\Entity\Products:
         public: true
 
+    App\Entity\Colletion:
+        public: true
+
     knp_paginator:
         class: Knp\Component\Pager\Paginator
     

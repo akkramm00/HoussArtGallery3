@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}HoussArtGallery- Nos Products{% endblock %}
+{% block title %}HoussArtGallery- Nos Collections{% endblock %}
 
 {% block body %}
 <style>
@@ -15,7 +15,7 @@
     .heading{
         font-family: 'roboto';
     }
-    .pagination li.active a{
+     .pagination li.active a{
         background-color:  #caa502;
         color: white;
     }
@@ -23,29 +23,28 @@
     .pagination li a {
         color:   #caa502;
     }
-
 </style>
 
 <body>
 <div class="container-fluid banner py-5">
     <div class="container">
-        <div class="row title d-flex justify-content-center align-items-center">
+        <div class="row title d-flex justify-content-center align-items-center mb-4">
             <div class="col-12 d-flex justify-content-center align-items-center text-white text-center">
-            {% if not products.items is same as ([]) %}
-                <h1 class="heading fs-1">NOS PRODUITS</h1>
+            {% if not colletion.items is same as ([]) %}
+                <h1 class="heading fs-1">NOS COLLECTIONS</h1>
             </div>
           
-                {# read and display just one flash message type #}
+                {#read and display just one flash message type #}
                {% for message in app.flashes('success') %}
-               <div class="alert alert-success">
+               <div class="alert alert-success mt-4">
                 {{ message}}
                </div>
                {% endfor %}
             <div class="col-10 count mt-4 text-white">
             <button class="btn-warning px-3 py-3 my-3  fs-3">
-                <a class="text-white text-decoration-none" href="{{ path('products.new') }}">Créer un produit</a>
+                <a class="text-white text-decoration-none" href="{{ path('collection.new') }}">Créer une Collection</a>
             </button>
-                <h2 class="fs-4 py-4">Il y'a {{ products.getTotalItemCount}} produits au total.</h2>
+                <h2 class="fs-4 py-2">Il y'a {{ colletion.getTotalItemCount}} Collections au total.</h2>
             </div>
 
             <div class="col-10 d-flex justify-content-center align-items-center text-center ">
@@ -54,44 +53,43 @@
                         <tr>
                             <th>Numéro</th>
                             <th>Nom</th>
-                            <th>Prix</th>
-                            <th>Dimention</th>
                             <th>Artiste</th>
                             <th>Catégorie</th>
-                            <th>Public</th>
+                            <th>Prix</th>
+                            <th>Favorite</th>
                             <th>Date de Création</th>
                             <th>Edition</th>
                             <th>Suppression</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for products in products %}
+                        {% for colletion in colletion %}
                         <tr>
-                            <th  class="d-flex justify-content-center align-items-center text-warning">{{ products.id }}</th>
-                            <th>{{ products.name }}</th>
-                            <td>{{ products.price }}</td>
-                            <td>{{ products.size }}</td>
-                            <td>{{ products.artist }}</td>
-                            <td>{{ products.category }}</td>
-                            <td>{{ products.isPublic }}</td>
-                            <td>{{ products.createdAt|date('d/m/Y') }}</td>
+                            <th  class="d-flex justify-content-center align-items-center text-warning">{{ colletion.id }}</th>
+                            <th>{{ colletion.name }}</th>
+                            <td>{{ colletion.artist }}</td>
+                            <td>{{ colletion.category }}</td>
+                            <td>{{ colletion.price }}</td>
+                            <td>{{ colletion.isFavorite }}</td>
+                            <td>{{ colletion.createdAt|date('d/m/Y') }}</td>
                             <td>
-                               <a href="{{ path('products.edit', { id: products.id }) }}" class="text-warning">Modifier</a>
+                                <a href="{{ path('collection.edit', { id:colletion.id }) }}" class="text-warning">Modifier</a>
                             </td>
                             <td>
-                               <a href="{{ path('products.delete', { id: products.id }) }}" class="text-danger">supprimer</a>
+                                <a href="{{ path('collection.delete', { id:colletion.id }) }}" class="text-danger">supprimer</a>
                             </td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
+
             </div>
 
             <div class="pagination pagination-lg col-10 d-flex justify-content-center align-items-center my-4">
-                {{ knp_pagination_render(products) }}
+                {{ knp_pagination_render(colletion) }}
             </div>
             {% else %}
-            <h4> Il n'y a pas de produits </H4>
+            <h4> Il n'y a pas de colletion </H4>
             {% endif %}
 
         </div>
