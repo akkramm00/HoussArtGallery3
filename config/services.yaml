@@ -21,4 +21,13 @@ services:
             - '../src/Kernel.php'
 
     # add more service definitions when explicit configuration is needed
+    App\Entity\Products:
+        public: true
+
+    knp_paginator:
+        class: Knp\Component\Pager\Paginator
+    
+    
+    
+    
     # please note that last definitions always *replace* previous ones
