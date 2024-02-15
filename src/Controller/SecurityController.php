@@ -38,7 +38,6 @@ class SecurityController extends AbstractController
         // Nothing to do here !
     }
     /********************************************************************************************** */
-    #[Route('/inscription', 'security.registration', methods: ['GET', 'POST'])]
     /**
      * This controller allow us to register .
      * 
@@ -47,6 +46,7 @@ class SecurityController extends AbstractController
      * @param EntityManagerInterface $manager
      * @return Response
      */
+    #[Route('/inscription', 'security.registration', methods: ['GET', 'POST'])]
     public function registration(Request $request, EntityManagerInterface $manager): Response
     {
         $user = new User();

@@ -1,0 +1,90 @@
+    {% extends 'base.html.twig' %}
+
+{% block title %}HoussartGallery- Inscription{% endblock %}
+
+{% block body %}
+
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+  .bg {
+        background-color: #c7a703;
+        padding: 2rem;
+        box-shadow: var(--box_shadow);
+        border-radius: 1rem;
+    }
+    .banner{
+        height:760px;
+        background:linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5)),url(images/fondHome.jpg) center center fixed no-repeat;
+        background-size:cover;
+    }
+
+</style>
+
+<body>
+    <div class="container-fluid banner">
+    <div class="container">
+        <div class="row  d-flex justify-content-center align-items-center">
+        <div class="col-sm-12 col-md-10 my-5">
+
+            <div class="row my-5">
+    	        {% block login %}
+		        {% include "partials/_login.html.twig" %}
+	            {% endblock %}
+            </div>
+            <div class="row">
+               <h1 class=" text-center fs-1 heading text-white">Formulaire D'Inscription</h1>
+
+               {# read and display just one flash message type #}
+               {% for message in app.flashes('success') %}
+               <div class="alert alert-success mt-4">
+                {{ message}}
+               </div>
+               {% endfor %}
+
+            </div>
+            <div class="row bg my-5">
+
+            {{ form_start(form) }}
+            <div class="form-group text-white fs-4">
+                {{ form_label(form.fullName, 'Nom / Prénom', {'label_attr': {'class': 'form-label mt-4'}}) }}
+                {{ form_widget(form.fullName, {'attr': {'class': 'form-control', 'minLength': 2, 'maxLength': 50}}) }}
+                {{ form_errors(form.fullName) }}
+            </div>
+
+            <div class="form-group text-white  fs-4">
+                {{ form_label(form.pseudo, 'Pseudo (Facultatif)', {'label_attr': {'class': 'form-label mt-4'}}) }}
+                {{ form_widget(form.pseudo, {'attr': {'class': 'form-control', 'minLength': 2, 'maxLength': 50}}) }}
+                {{ form_errors(form.pseudo) }}
+            </div>
+
+            <div class="form-group text-white fs-4">
+                {{ form_label(form.email, 'Adresse email', {'label_attr': {'class': 'form-label mt-4'}}) }}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control', 'minLength': 2, 'maxLength': 180}}) }}
+                {{ form_errors(form.email) }}
+            </div>
+
+            <div class="form-group text-white fs-4">
+                {{ form_label(form.plainPassword, 'Mot de passe', {'label_attr': {'class': 'form-label mt-4'}}) }}
+                {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.plainPassword.second, 'Confirmation du Mot de passe', {'label_attr': {'class': 'form-label mt-4'}}) }}
+                {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.plainPassword) }}
+            </div>
+
+                {{ form_widget(form.submit, {'attr': {'class': 'btn btn-warning mt-4'}}) }}
+
+            {{ form_end(form) }}
+
+            </div>
+
+        </div>
+        </div>
+    </div>
+  </div>
+</body>
+
+{% endblock %}
