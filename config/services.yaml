@@ -20,6 +20,10 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    App\EntityListener\:
+        resource: "../src/EntityListener/"
+        tags: ["doctrine.orm.entity_listener"]
+
     # add more service definitions when explicit configuration is needed
     App\Entity\Products:
         public: true
