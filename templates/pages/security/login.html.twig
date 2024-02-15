@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}houssArt - Connexion{% endblock %}
+
+{% block body %}
+<style>
+.loginFormContainer{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:rgba(255, 255, 255 ,0.9);
+    z-index: 1000;
+}
+
+</style>
+
+
+<div  class="container py-4">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center align-items-center py-5">
+            <div class="vide">
+                <h1></h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="loginFormContainer">
+    <span id="CloseLoginForm" class="fas fa-times"></span>
+
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="row">
+            <div class="col-12">
+
+                {% if error %}
+                <div class="alert alert-danger text-center">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+                {% endif %}
+
+                {% for message in app.flashes('success') %}
+                <div class="alert alert-success mt-4 text-center">
+                    {{ message}}
+                </div>
+                {% endfor %}
+
+                <form action="{{ path('security.login') }}" method="post" name="login">
+                    <h3>User Login</h3>
+                    <input type="email" name="_username" required placeholder="exemple@houssArtGallery.fr" class="box" value="{{ last_username}}">
+                    <input type="password" name="_password" required placeholder="********" class="box">
+                    <button type="submit" class="btn">Se Connecter</button>
+                    <div class="buttons">
+                        {# <a href="{{ path('security.registration') }}" class="btn">S'Inscrire</a> #}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>		
+{% endblock %}

@@ -102,7 +102,7 @@ header .navbar a:hover{
     margin-top: 0;
 }
 #LoginBtn .btn:hover{
-    color: #fff;
+    color: var(--main);
 }
 #LoginBtn i {
     color: #fff;
