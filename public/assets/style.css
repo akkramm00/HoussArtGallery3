@@ -96,18 +96,16 @@ header .navbar a:hover{
     color: #fff;
     border-radius: 1rem;
 }
-
-
 #LoginBtn .btn{
     margin-top: 0;
 }
 #LoginBtn .btn:hover{
     color: var(--main);
 }
-#LoginBtn i {
+#LoginBtn i{
     color: #fff;
-    font-size: 2.5rem;
-    display:none;
+    font-size: 2rem;
+    margin: 0 1rem
 }
 #MenuBtn{
     font-size: 2.5rem;
