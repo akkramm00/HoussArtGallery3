@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HoussArtGallery - Modification de l'utilisateur !{% endblock %}
+
+{% block body %}
+
+    <style>
+    .bg {
+        background: var(--main);
+        padding: 5rem;
+        box-shadow: var(--box_shadow);
+        border-radius: 1rem;
+    }
+    .banner{
+        height:760px;
+        background:linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.1)),url(https://cdn.pixabay.com/photo/2016/09/04/12/38/living-room-1643855_1280.jpg) center center fixed no-repeat;
+        background-size:cover; 
+    }
+    .empty{
+        height: 70px;
+    }
+
+</style>
+<body>
+    <div class="container-fluid banner">
+    <div class="container my-5">
+        <div class="row  d-flex justify-content-center align-items-center my-5">
+        <div class="col-sm-12 col-md-10 my-5">
+            <div class="row empty my-5">
+            </div>
+            <div class="row my-5">
+               <h1 class="mt-4 text-center text-white heading fs-2 mt-5">MODIFICATION DE L'UTILISATEUR</h1>
+               {# read and display just one flash message type #}
+               {% for message in app.flashes('success') %}
+               <div class="alert alert-success mt-4">
+                {{ message}}
+               {% endfor %}
+
+               {% for message in app.flashes('warning') %}
+               <div class="alert alert-warning mt-4">
+                {{ message}}
+               </div>
+               {% endfor %}
+
+            </div>
+            <div class="row bg my-5">
+   
+                {{ form_start(form) }}
+
+                    <div class="form-group">
+                        {{ form_label(form.fullName, 'Nom / Prénom', {'label_attr': {'class': 'form-label mt-4'}}) }}
+                        {{ form_widget(form.fullName, {'attr': {'class': 'form-control', 'minlength': 2, 'maxlength': 50}}) }}
+                        {{ form_errors(form.fullName) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.pseudo, 'Pseudo (Facultatif)', {'label_attr': {'class': 'form-label mt-4'}}) }}
+                        {{ form_widget(form.pseudo, {'attr': {'class': 'form-control', 'minlength': 2, 'maxlength': 50}}) }}
+                        {{ form_errors(form.pseudo) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.plainPassword, 'Mot de passe', {'label_attr': {'class': 'form-label mt-4'}}) }}
+                        {{ form_widget(form.plainPassword, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.plainPassword) }}
+                    </div>
+
+                    {{ form_widget(form.submit, {'attr': {'class': 'btn btn-warning mt-4'}}) }}
+
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+        </div>
+    </div>
+  </div>
+</body>
+
+{% endblock %}

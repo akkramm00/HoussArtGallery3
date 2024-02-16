@@ -43,6 +43,13 @@
 </style>
 <div class="container-fluid banner d-flex justify-content-center align-items-center ">
 <div class="row container-fluid">
+
+               {% for message in app.flashes('success') %}
+               <div class="alert alert-success mt-4">
+                {{ message}}
+               </div>
+               {% endfor %}
+			   
     <section id="Home" class="col col-sm-12 col-md-9 col-lg-9 home d-flex-colomn justify-content-start align-items-center ">
 		<h2 class="homeParalexEffect text-warning">
 			Bienvenue sur
