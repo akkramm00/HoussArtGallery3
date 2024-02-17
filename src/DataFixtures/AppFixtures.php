@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
+use App\Entity\Artist;
 use App\Entity\Products;
 use App\Entity\Colletion;
 use Doctrine\Bundle\FixturesBundle\Fixture;
