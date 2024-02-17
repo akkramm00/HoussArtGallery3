@@ -59,6 +59,10 @@ class Colletion
     #[ORM\ManyToMany(targetEntity: Products::class)]
     private Collection $products;
 
+    #[ORM\ManyToOne(inversedBy: 'Collection')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
 
     public function __construct()
     {
@@ -194,6 +198,18 @@ class Colletion
     public function removeProduct(Products $product): static
     {
         $this->products->removeElement($product);
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

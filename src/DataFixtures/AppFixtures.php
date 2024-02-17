@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
-use App\Entity\Artist;
 use App\Entity\Products;
 use App\Entity\Colletion;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -27,6 +26,20 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+        // Users
+        $users = [];
+        for ($i = 0; $i < 10; $i++) {
+            $user = new User();
+            $user->setFullName($this->faker->name())
+                ->setPseudo(mt_rand(0, 1) === 1 ? $this->faker->firstName() : null)
+                ->setEmail($this->faker->email())
+                ->setRoles(['ROLE_USER'])
+                ->setPlainPassword('password');
+
+            $users[] = $user;
+            $manager->persist($user);
+        }
+
 
         // Products
         $product = [];
@@ -42,7 +55,8 @@ class AppFixtures extends Fixture
                 ->setProperty($this->faker->text(2000))
                 ->setArtist($this->faker->words(2, true))
                 ->setCategory($categoryOptions[array_rand($categoryOptions)])
-                ->setIsPublic(mt_rand(0, 1) == 1 ? true : false);
+                ->setIsPublic(mt_rand(0, 1) == 1 ? true : false)
+                ->setUser($users[mt_rand(0, count($users) - 1)]);
 
             $product[] = $products;
             $manager->persist($products);
@@ -56,7 +70,8 @@ class AppFixtures extends Fixture
                 ->setCategory($categoryOptions[array_rand($categoryOptions)])
                 ->setDescription($this->faker->text(2000))
                 ->setPrice(mt_rand('20000', '100000'))
-                ->setIsFavorite(mt_rand(0, 1) == 1 ? true : false);
+                ->setIsFavorite(mt_rand(0, 1) == 1 ? true : false)
+                ->setUser($users[mt_rand(0, count($users) - 1)]);
 
             for ($k = 0; $k < mt_rand(5, 15); $k++) {
 
@@ -66,7 +81,7 @@ class AppFixtures extends Fixture
             $manager->persist($colletion);
         }
 
-        // Users
+
         // $users = [];
 
         // $admin = new User();
@@ -80,16 +95,6 @@ class AppFixtures extends Fixture
         // $manager->persist($admin);
 
 
-        for ($i = 0; $i < 10; $i++) {
-            $user = new User();
-            $user->setFullName($this->faker->name())
-                ->setPseudo(mt_rand(0, 1) === 1 ? $this->faker->firstName() : null)
-                ->setEmail($this->faker->email())
-                ->setRoles(['ROLE_USER'])
-                ->setPlainPassword('password');
-
-            $manager->persist($user);
-        }
 
         $manager->flush();
     }

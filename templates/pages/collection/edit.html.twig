@@ -79,16 +79,7 @@
                 </div>
                 </div>
 
-                <div class="form-group text-white fs-4 mt-2">    
-                {{ form_label(form.products) }}
-                {{ form_widget(form.products) }}
-                <div class="form-error">
-                    {{ form_errors(form.products)}}
-                </div>
-                </div>
-
-
-                <div class="form-group text-white fs-4">    
+                <div class="form-group text-white fs-4 mt-4">    
                 {{ form_label(form.isFavorite) }}
                 {{ form_widget(form.isFavorite) }}
                 <div class="form-error">
@@ -96,8 +87,15 @@
                 </div>
                 </div>
 
+                <div class="form-group text-white fs-4 my-4">    
+                {{ form_label(form.products) }}
+                {{ form_widget(form.products) }}
+                <div class="form-error">
+                    {{ form_errors(form.products)}}
+                </div>
+                </div>
 
-                <div class="form-group text-white">    
+                <div class="form-group text-white mt-4">    
                 {{ form_row(form._token) }}
                 </div>
 

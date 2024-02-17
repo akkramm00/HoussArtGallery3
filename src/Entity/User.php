@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -52,12 +54,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotNull()]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Products::class, orphanRemoval: true)]
+    private Collection $products;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Colletion::class, orphanRemoval: true)]
+    private Collection $Collection;
+
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
+        $this->products = new ArrayCollection();
+        $this->Collection = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -184,6 +194,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, products>
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function addProduct(Products $product): static
+    {
+        if (!$this->products->contains($product)) {
+            $this->products->add($product);
+            $product->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(Products $product): static
+    {
+        if ($this->products->removeElement($product)) {
+            // set the owning side to null (unless already changed)
+            if ($product->getUser() === $this) {
+                $product->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Colletion>
+     */
+    public function getCollection(): Collection
+    {
+        return $this->Collection;
+    }
+
+    public function addCollection(Colletion $collection): static
+    {
+        if (!$this->Collection->contains($collection)) {
+            $this->Collection->add($collection);
+            $collection->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCollection(Colletion $collection): static
+    {
+        if ($this->Collection->removeElement($collection)) {
+            // set the owning side to null (unless already changed)
+            if ($collection->getUser() === $this) {
+                $collection->setUser(null);
+            }
+        }
 
         return $this;
     }

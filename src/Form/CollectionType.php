@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Colletion;
 use App\Entity\Products;
+use App\Repository\ProductsRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\AbstractType;
@@ -14,9 +15,16 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class CollectionType extends AbstractType
 {
+    private $token;
+
+    public function __construct(TokenStorageInterface $token)
+    {
+        $this->token = $token;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -108,6 +116,12 @@ class CollectionType extends AbstractType
             ])
             ->add('products', EntityType::class, [
                 'class' => Products::class,
+                'query_builder' => function (ProductsRepository $r) {
+                    return $r->createQueryBuilder('i')
+                        ->where('i.user = :user')
+                        ->orderBy('i.name', 'ASC')
+                        ->setParameter('user', $this->token->getToken()->getUser());
+                },
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,

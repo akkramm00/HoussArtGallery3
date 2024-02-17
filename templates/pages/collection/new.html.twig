@@ -6,9 +6,10 @@
 
 <style>
     .banner{
-        height:100%;
+        height:90rem;
         background:linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5)),url(https://cdn.pixabay.com/photo/2016/09/04/12/38/living-room-1643855_1280.jpg) center fixed no-repeat;
-        background-size:cover; 
+        background-size:cover;
+        padding: 5rem 0;
     }
     .heading{
         margin: 15rem 0 0 0;
@@ -19,7 +20,7 @@
 </style>
 
 <body>
-<div class="container-fluid banner py-5">
+<div class="container-fluid banner py-5 d-flex justify-centent-center align-items-center">
     <div class="container">
         <div class="row d-flex justify-content-center align-items-center">
                 <div class="col-sm-12 col-md-10">
@@ -79,16 +80,7 @@
                 </div>
                 </div>
 
-                <div class="form-group text-white fs-4 mt-2">    
-                {{ form_label(form.products) }}
-                {{ form_widget(form.products) }}
-                <div class="form-error">
-                    {{ form_errors(form.products)}}
-                </div>
-                </div>
-
-
-                <div class="form-group text-white fs-4">    
+                <div class="form-group text-white fs-4 mt-4">    
                 {{ form_label(form.isFavorite) }}
                 {{ form_widget(form.isFavorite) }}
                 <div class="form-error">
@@ -96,8 +88,15 @@
                 </div>
                 </div>
 
+                <div class="form-group text-white fs-4 my-4">    
+                {{ form_label(form.products) }}
+                {{ form_widget(form.products) }}
+                <div class="form-error">
+                    {{ form_errors(form.products)}}
+                </div>
+                </div>
 
-                <div class="form-group text-white">    
+                <div class="form-group text-white mt-4">    
                 {{ form_row(form._token) }}
                 </div>
 

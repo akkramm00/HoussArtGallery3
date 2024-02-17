@@ -29,7 +29,7 @@ class CollectionController extends AbstractController
         Request $request
     ): Response {
         $colletion = $paginator->paginate(
-            $repository->findAll(),
+            $repository->findBy(['user' => $this->getUser()]),
             $request->query->getInt('page', 1),
             10
         );
@@ -56,6 +56,7 @@ class CollectionController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $colletion = $form->getData();
+            $colletion->setUser($this->getUser());
 
             $manager->persist($colletion);
             $manager->flush();
