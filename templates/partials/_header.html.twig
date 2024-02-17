@@ -11,9 +11,9 @@
 		<a href="#">NOUS CONTACTER</a>
 	</nav>
 
-	{% if app.user and is_granted('ROLE_ADMIN') %}
+	{% if app.user %}
 		<div class="dropdown mx-4">
-			<button class="btn dropdown-toggle m-0" type="button" data-bs-toggle="dropdown" aria-expanded="true">
+			<button class="btn dropdown-toggle fs-5 m-0" type="button" data-bs-toggle="dropdown" aria-expanded="true">
 				Action
 			</button>
 			<ul class="dropdown-menu Action fs-5">
@@ -21,16 +21,16 @@
 					<a class="dropdown-item" href="{{ path('admin') }}">Dashboard</a>
 				</li> #}
 				<li>
-					<a class="dropdown-item" href="{{ path('products') }}">Nos Produits !</a>
+					<a class="dropdown-item" href="{{ path('products') }}">Mes Produits !</a>
 				</li>
 				<li>
 					<a class="dropdown-item" href="{{ path('products.new') }}">Nouveau Produit !</a>
 				</li>
 				<li>
-					<a class="dropdown-item" href="{{ path('collection.index') }}">Les arrivages !</a>
+					<a class="dropdown-item" href="{{ path('collection.index') }}">Mes collections</a>
 				</li>
 				<li>
-					<a class="dropdown-item" href="{{ path('collection.new') }}">Nouveau Arrivage</a>
+					<a class="dropdown-item" href="{{ path('collection.new') }}">Nouvelle collection</a>
 				</li>
 				{# <li>
 					<a class="dropdown-item" href="{{ path('user.index') }}">Liste des utilisateurs</a>
