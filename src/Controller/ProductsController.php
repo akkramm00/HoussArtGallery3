@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 
 class ProductsController extends AbstractController
@@ -26,7 +25,6 @@ class ProductsController extends AbstractController
      */
 
     #[Route('/products', name: 'products', methods: ['GET'])]
-    #[IsGranted('ROLE_USER')]
     public function index(
         ProductsRepository $repository,
         PaginatorInterface $paginator,
@@ -51,7 +49,6 @@ class ProductsController extends AbstractController
      * @return Response
      */
     #[Route('/products/nouveau', 'products.new', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_USER')]
     public function new(
         Request $request,
         EntityManagerInterface $manager
@@ -91,7 +88,6 @@ class ProductsController extends AbstractController
      * @return Response
      */
     #[Route('/products/edition/{id}', 'products.edit', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_USER')]
     public function edit(
         ProductsRepository $repository,
         Request $request,
@@ -131,7 +127,6 @@ class ProductsController extends AbstractController
      * @return Response
      */
     #[Route('/products/suppression/{id}', 'products.delete', methods: ['GET'])]
-    #[IsGranted('ROLE_USER')]
     public function delete(
         EntityManagerInterface $manager,
         ProductsRepository $repository,
