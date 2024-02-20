@@ -53,6 +53,7 @@ class ProductsController extends AbstractController
         Request $request,
         EntityManagerInterface $manager
     ): Response {
+        $this->denyAccessUnlessGranted('ROLE_PRODUCT_ADMIN');
         $products = new Products();
         $form = $this->createForm(ProductsType::class, $products);
 
@@ -89,11 +90,15 @@ class ProductsController extends AbstractController
      */
     #[Route('/products/edition/{id}', 'products.edit', methods: ['GET', 'POST'])]
     public function edit(
+        Products $products,
         ProductsRepository $repository,
         Request $request,
         EntityManagerInterface $manager,
         $id
     ): Response {
+        //on vérife si l'utilisateur peut éditer avec le voter
+        $this->denyAccessUnlessGranted('PRODUCT_EDIT', $products);
+        // $this->denyAccessUnlessGranted('ROLE_PRODUCT_ADMIN');
         $products = $repository->findOneBy(["id" => $id]);
         $form = $this->createForm(ProductsType::class, $products);
 
@@ -133,6 +138,8 @@ class ProductsController extends AbstractController
         Products $products,
         $id
     ): Response {
+        // $this->denyAccessUnlessGranted('PRODUCT_DELETE', $products);
+        $this->denyAccessUnlessGranted('ROLE_PRODUCT_ADMIN');
         $products = $repository->findOneBy(["id" => $id]);
         if (!$products) {
             $this->addflash(

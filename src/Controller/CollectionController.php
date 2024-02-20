@@ -50,6 +50,7 @@ class CollectionController extends AbstractController
         Request $request,
         EntityManagerInterface $manager,
     ): Response {
+        $this->denyAccessUnlessGranted('ROLE_PRODUCT_ADMIN');
         $colletion = new Colletion();
         $form = $this->createForm(CollectionType::class, $colletion);
 
@@ -85,11 +86,14 @@ class CollectionController extends AbstractController
      */
     #[Route('/collection/edition/{id}', 'collection.edit', methods: ['GET', 'POST'])]
     public function edit(
+        Colletion $colletion,
         ColletionRepository $repository,
         Request $request,
         EntityManagerInterface $manager,
         $id
     ): Response {
+        $this->denyAccessUnlessGranted('COLLECTION_EDIT', $colletion);
+        // $this->denyAccessUnlessGranted('ROLE_PRODUCT_ADMIN');
         $colletion = $repository->findOneBy(["id" => $id]);
         $form = $this->createForm(CollectionType::class, $colletion);
 
@@ -129,6 +133,8 @@ class CollectionController extends AbstractController
         Colletion $colletion,
         $id
     ): Response {
+        // $this->denyAccessUnlessGranted('ROLE_PRODUCT_ADMIN');
+        $this->denyAccessUnlessGranted('COLLECTION_DELETE', $colletion);
         $colletion = $repository->findOneBy(["id" => $id]);
         if (!$colletion) {
             $this->addflash(
