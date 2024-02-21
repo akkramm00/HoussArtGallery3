@@ -155,4 +155,27 @@ class CollectionController extends AbstractController
 
         return $this->redirectToRoute('collection.index');
     }
+    /************************************************************************* */
+    #[Route('/collection/show/{id}', 'collection.show', methods: ['GET'])]
+    public function show(
+        ColletionRepository $repository,
+        $id
+    ): Response {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        $colletion = $repository->findOneBy(["id" => $id]);
+
+
+        if (!$colletion) {
+            // Le produit n'existe pas, renvoyez une réponse d'erreur
+            $this->addflash(
+                'warning',
+                'Le produit en question n\'a pas été trouvé !'
+            );
+            return $this->redirectToRoute('home.index');
+        }
+
+        return $this->render('pages/collection/show.html.twig', [
+            'colletion' => $colletion,
+        ]);
+    }
 }

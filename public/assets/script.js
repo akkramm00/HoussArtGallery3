@@ -56,3 +56,18 @@ document.addEventListener('DOMContentLoaded', function () {
         stars.forEach(star => star.classList.remove('active'));
     }
 });
+
+// ProductsColletion scrolling
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollContainer = document.querySelector('.scroll-container');
+  
+    document.getElementById('scrollLeft').addEventListener('click', () => {
+      // Défiler vers la gauche
+      scrollContainer.scrollBy({ left: -330, behavior: 'smooth' });
+    });
+  
+    document.getElementById('scrollRight').addEventListener('click', () => {
+      // Défiler vers la droite
+      scrollContainer.scrollBy({ left: 330, behavior: 'smooth' });
+    });
+  });

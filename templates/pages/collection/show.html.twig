@@ -1,0 +1,147 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} HoussArtGallery - {{ colletion.name}} {% endblock %}
+
+{% block body %}
+    
+<style>
+    .banner{
+        height: 100%;
+        background:linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5)),url(https://cdn.pixabay.com/photo/2016/09/04/12/38/living-room-1643855_1280.jpg) center center fixed no-repeat;
+        background-size:cover;
+    }
+    .section{
+        margin: 15rem 0;
+    }
+    .banner .critéres{
+        heigth: 100%;
+        padding: 2rem;
+    }
+    .container {
+        position: relative;
+    }
+    .scroll-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        background-color: #ddd; /* Couleur de fond des boutons */
+        border: none; /* Retirer la bordure des boutons */
+        padding: 10px 15px; /* Ajuster la taille des boutons */
+        cursor: pointer; /* Change le curseur en main au survol */
+    }
+    .scroll-btn.left {
+        left: 0;
+    }
+    .scroll-btn.right {
+        right: 0;
+    }
+    /* Style pour le conteneur de défilement et les cartes (identique à avant) */
+    .scroll-container {
+        overflow-x: auto;
+        display: flex;
+        flex-wrap: nowrap;
+        scroll-behavior: smooth;
+    }
+    .scroll-container .col-sm-12.col-md-3.col-lg-3 {
+        flex: 0 0 auto;
+    }
+
+</style>
+
+<body>
+    <div class="container-fluid banner py-5">
+        <div class="container opacity d-flex justify-content-center align-items-center">
+            <div class="row section d-flex justify-content-end align-items-center">
+                <div class="col-12 col-md-12 col-lg-6">
+                    <div class="card h-100 box-ch">
+                    <h1 class="py-4">{{ colletion.name }}</h1>
+                        {# <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                            <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner box-ch">
+                            <div class="carousel-item active box-ch">
+                                <img src="{{ vich_uploader_asset(products, 'imageFile') }}" class="d-block w-100 box-ch p-3" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{ vich_uploader_asset(products, 'imageFile') }}" class="d-block w-100 box-ch p-3" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{ vich_uploader_asset(products, 'imageFile') }}" class="d-block w-100 box-ch p-3" alt="...">
+                            </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                            </button>
+                        </div> #}
+                        <div class="card-body">
+                        <h5 class="card-title">{{ colletion.price }} €</h5>
+                        <p class="card-text">{{ colletion.description|slice(0,200) ~ '...'  }}</p>
+                        </div>
+                        <div class="card-footer bg-secondary my-3">
+                        <small class="text-white fs-5"><strong>Date de publication :</strong>{{ colletion.createdAt|date('d/m/Y') }}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <p class="col-12 fs-4 text-warning">LES PRODUITS DE LA COLLECTION</p>
+                    <button id="scrollLeft" class="scroll-btn bg-transparent left fs-2">&lt;</button> <!-- Bouton gauche -->
+                        <div class="row scroll-container">
+                            {% for products in colletion.products %}
+                                <div class="col-sm-12 col-md-3 col-lg-3 my-3">
+                                    <div class="card">
+                                    <a href="{{ path('products.show', { id:products.id }) }}"><img src="#" class="card-img-top" alt="..."></a>
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ products.name }}</h5>
+                                        <p class="card-text">{{ products.property|slice(0, 50) ~ '...' }}</p>
+                                    </div>
+                                    </div>
+                                </div>                                                     
+                            {% endfor %}
+                        </div>
+                    <button id="scrollRight" class="scroll-btn bg-transparent right fs-2">&gt;</button> <!-- Bouton droit -->
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="col-12 critéres text-start d-flex-column justify-content-center align-items-center text-white">
+                <ul class=" list-group list-group-flush fs-5 py-3">
+                    <h1 class="fs-3 text-center">CARACTERISTIQUES</h1>
+                    <li class="list-group-item list-group-item-warning"><strong>NOM :</strong> {{ colletion.name }}</li>
+                    <li class="list-group-item list-group-item-warning"><strong>ARTIST :</strong> {{ colletion.artist }}</li>
+                    <li class="list-group-item list-group-item-warning"><strong>PRIX en EUROS:</strong> {{ colletion.price}}</li>
+                    <li class="list-group-item list-group-item-warning"><strong>CATEGORIE :</strong> {{ colletion.category }}</li>
+                    <li class="list-group-item list-group-item-warning"><strong>DESCRIPTION :</strong> {{ colletion.description|slice(0,500) ~ '...' }}</li>
+                    {# <li class="list-group-item list-group-item-warning">  <a href="{{ path('contact.index') }}" class="btn btn-primary">Reserver</a></li> #}
+                </ul>
+            </div> 
+        </div>
+
+    </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const scrollContainer = document.querySelector('.scroll-container');
+  
+    document.getElementById('scrollLeft').addEventListener('click', () => {
+      // Défiler vers la gauche
+      scrollContainer.scrollBy({ left: -330, behavior: 'smooth' });
+    });
+  
+    document.getElementById('scrollRight').addEventListener('click', () => {
+      // Défiler vers la droite
+      scrollContainer.scrollBy({ left: 330, behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+
+{% endblock %}
