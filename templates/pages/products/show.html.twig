@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} HoussArtGallery - {{ products.name}} {% endblock %}
+
+{% block body %}
+    
+<style>
+    .banner{
+        height: 800px;
+        background:linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5)),url(https://cdn.pixabay.com/photo/2016/09/04/12/38/living-room-1643855_1280.jpg) center center fixed no-repeat;
+        background-size:cover;
+    }
+    .section{
+        margin: 20rem 0;
+    }
+    .banner .critéres{
+        border: solid 1px transparent;
+        background: white;
+        opacity: 0.8;
+        heigth: 100%;
+        margin: 20rem 0 20rem 0;
+    }
+
+</style>
+
+<body>
+    <div class="container-fluid banner py-5">
+        <div class="container opacity d-flex justify-content-center align-items-center mb-4">
+            <div class="row section d-flex justify-content-center align-items-center py-5">
+                <div class="col-12 col-md-12 col-lg-6 my-5">
+                    <div class="card h-100 box-ch">
+                    <h1 class="p-4">{{ products.name }}</h1>
+                        {# <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                            <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner box-ch">
+                            <div class="carousel-item active box-ch">
+                                <img src="{{ vich_uploader_asset(products, 'imageFile') }}" class="d-block w-100 box-ch p-3" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{ vich_uploader_asset(products, 'imageFile') }}" class="d-block w-100 box-ch p-3" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{ vich_uploader_asset(products, 'imageFile') }}" class="d-block w-100 box-ch p-3" alt="...">
+                            </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                            </button>
+                        </div> #}
+                        <div class="card-body">
+                        <h5 class="card-title">{{ products.price }} €</h5>
+                        <p class="card-text">{{ products.property|slice(0,200) ~ '...'  }}</p>
+                        </div>
+                        <div class="card-footer bg-secondary my-3">
+                        <small class="text-white fs-5"><strong>Date de publication :</strong>{{ products.createdAt|date('d/m/Y') }}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-6 critéres text-start d-flex justify-content-center align-items-center my-5">
+                    <ul class=" list-group  list-group-flush fs-4 py-3">
+                        <h1 class="mb-5">CARACTERISTIQUES</h1>
+                        <li class="list-group-item"><strong>NOM :</strong> {{ products.name }}</li>
+                        <li class="list-group-item"><strong>ARTIST :</strong> {{ products.artist }}</li>
+                        <li class="list-group-item"><strong>PRIX en EUROS:</strong> {{ products.price}}</li>
+                        <li class="list-group-item"><strong>TAILLE :</strong> {{ products.size }}</li>
+                        <li class="list-group-item"><strong>CATEGORIE :</strong> {{ products.category }}</li>
+                        <li class="list-group-item"><strong>DESCRIPTION :</strong> {{ products.property|slice(0,500) ~ '...' }}</li>
+                        {# <li class="list-group-item">  <a href="{{ path('contact.index') }}" class="btn btn-primary">Reserver</a></li> #}
+                    </ul>
+                </div>
+                  
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock %}

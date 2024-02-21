@@ -160,4 +160,27 @@ class ProductsController extends AbstractController
 
         return $this->redirectToRoute('products');
     }
+    /************************************************************************* */
+    #[Route('/products/show/{id}', 'products.show', methods: ['GET'])]
+    public function show(
+        ProductsRepository $repository,
+        $id
+    ): Response {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        $products = $repository->findOneBy(["id" => $id]);
+
+
+        if (!$products) {
+            // Le produit n'existe pas, renvoyez une réponse d'erreur
+            $this->addflash(
+                'warning',
+                'Le produit en question n\'a pas été trouvé !'
+            );
+            return $this->redirectToRoute('home.index');
+        }
+
+        return $this->render('pages/products/show.html.twig', [
+            'products' => $products,
+        ]);
+    }
 }
