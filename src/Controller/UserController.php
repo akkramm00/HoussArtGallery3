@@ -32,7 +32,7 @@ class UserController extends AbstractController
         UserPasswordHasherInterface $hasher,
         $id
     ): Response {
-
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $user = $repository->findOneBy(["id" => $id]);
 
         if (!$this->getUser()) {
@@ -82,6 +82,7 @@ class UserController extends AbstractController
         UserPasswordHasherInterface $hasher,
         $id
     ): Response {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $user = $repository->findOneBy(["id" => $id]);
 
         if (!$this->getUser()) {

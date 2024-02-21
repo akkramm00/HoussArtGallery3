@@ -54,7 +54,7 @@ class ProductsController extends AbstractController
         Request $request,
         EntityManagerInterface $manager
     ): Response {
-        $this->denyAccessUnlessGranted('ROLE_PRODUCT_ADMIN');
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $products = new Products();
         $form = $this->createForm(ProductsType::class, $products);
 
