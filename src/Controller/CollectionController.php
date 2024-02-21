@@ -28,6 +28,7 @@ class CollectionController extends AbstractController
         PaginatorInterface $paginator,
         Request $request
     ): Response {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $colletion = $paginator->paginate(
             $repository->findBy(['user' => $this->getUser()]),
             $request->query->getInt('page', 1),
