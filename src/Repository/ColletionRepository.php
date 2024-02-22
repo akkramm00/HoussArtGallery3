@@ -20,4 +20,24 @@ class ColletionRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Colletion::class);
     }
+    /**
+     * This method allow us to find public collections based number of collections
+     *
+     * @param integer|null $nbColletions
+     * @return array
+     */
+    public function findPublicColletion(?int $nbColletions): array
+    {
+        $queryBuilder = $this->createQueryBuilder('c'); // Utilisez "createQueryBuilder" au lieu de "creatQueryBuilder"
+        $queryBuilder->select('c')
+            ->where('c.isPublic = 1')
+            ->orderBy('c.createdAt', 'DESC');
+
+        if (!$nbColletions !== 0 || !$nbColletions !== null) {
+            $queryBuilder->setMaxResults($nbColletions);
+        }
+
+        return $queryBuilder->getQuery()
+            ->getResult();
+    }
 }

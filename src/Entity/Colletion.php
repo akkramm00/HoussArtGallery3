@@ -48,6 +48,9 @@ class Colletion
     #[ORM\Column(type: 'boolean')]
     private ?bool $isFavorite = null;
 
+    #[ORM\Column(type: 'boolean')]
+    private ?bool $isPublic = false;
+
     #[ORM\Column]
     #[Assert\NotNull()]
     private ?\DateTimeImmutable $createdAt = null;
@@ -150,6 +153,18 @@ class Colletion
     public function setIsFavorite(bool $isFavorite): static
     {
         $this->isFavorite = $isFavorite;
+
+        return $this;
+    }
+
+    public function isIsPublic(): ?bool
+    {
+        return $this->isPublic;
+    }
+
+    public function setIsPublic(bool $isPublic): static
+    {
+        $this->isPublic = $isPublic;
 
         return $this;
     }

@@ -11,6 +11,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Cache\ItemInterface;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 class CollectionController extends AbstractController
 {
@@ -39,6 +41,34 @@ class CollectionController extends AbstractController
         ]);
     }
     /************************************************************************ */
+    #[Route('/collection/publique', 'collection.index.public', methods: ['GET'])]
+    public function indexPublic(
+        ColletionRepository $repository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
+
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('security.login');
+        }
+
+        $cache = new FilesystemAdapter();
+        $data = $cache->get('colletion', function (ItemInterface $item) use ($repository) {
+            $item->expiresAfter(15);
+            return $repository->findPublicColletion(null);
+        });
+
+        $colletion = $paginator->paginate(
+            $data,
+            $request->query->getInt('page', 1),
+            10
+        );
+
+        return $this->render('pages/collection/index_public.html.twig', [
+            'colletion' => $colletion
+        ]);
+    }
+    /************************************************************************* */
     /**
      * This controller allow us to create a new collection
      *
