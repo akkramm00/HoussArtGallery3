@@ -114,6 +114,19 @@ class CollectionType extends AbstractType
                 ],
                 'required' => false
             ])
+            ->add('isPublic', CheckboxType::class, [
+                'attr' => [
+                    'class' => 'form-check-input',
+                ],
+                'label' => 'Public ?',
+                'label_attr' => [
+                    'class' => 'form-check-label'
+                ],
+                'constraints' => [
+                    new Assert\NotNull()
+                ],
+                'required' => false
+            ])
             ->add('products', EntityType::class, [
                 'class' => Products::class,
                 'query_builder' => function (ProductsRepository $r) {
