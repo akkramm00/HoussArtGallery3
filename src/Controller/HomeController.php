@@ -16,8 +16,8 @@ class HomeController extends AbstractController
         ColletionRepository $colletionRepository,
     ): Response {
         return $this->render('pages/home/index.html.twig', [
-            'products' => $productsRepository->findPublicProducts(3),
-            'colletion' => $colletionRepository->findPublicColletion(3),
+            'products' => $productsRepository->findPublicProducts(4),
+            'colletion' => $colletionRepository->findPublicColletion(4),
         ]);
     }
 }

@@ -9,7 +9,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Merriweather', serif;
+    font-family: 'roboto';
     text-decoration: none;
     border: none;
     outline: none;
@@ -41,9 +41,8 @@ html{
 }
 .heading{
     padding-bottom:2rem;
-    font-size:4.5rem;
+    font-size:2rem;
     text-align:center;
-    text-shadow: 0.6rem 0.6rem 0.6rem var(--main);
 }
 /*  Header/Navbar Start  */
 header{
