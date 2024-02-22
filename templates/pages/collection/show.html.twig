@@ -10,6 +10,14 @@
         background:linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5)),url(https://cdn.pixabay.com/photo/2016/09/04/12/38/living-room-1643855_1280.jpg) center center fixed no-repeat;
         background-size:cover;
     }
+    .banner a{
+		background: #caa502;
+		color: white;
+		text-decoration: none;
+		padding: 20px;
+		font-size: 1.5rem;
+		font-family: 'roboto', serif;
+	}
     .section{
         margin: 15rem 0;
     }
@@ -50,27 +58,24 @@
     .scroll-container .col-sm-12.col-md-3.col-lg-3 {
         flex: 0 0 auto;
     }
-    .card{
-        box-shadow: 0 0 1rem yellow;
-    }
     .description li{
     font-family: 'roboto';
     background: transparent;
     color: #fff;
-}
+    }
 
 </style>
 
 <body>
     <div class="container-fluid banner py-5">
         <div class="container opacity d-flex justify-content-center align-items-center">
-            <div class="row section d-flex justify-content-between align-items-center">
+            <div class="row section d-flex justify-content-center align-items-center">
                 <div class="col-12 col-md-12 col-lg-6">
                     <img src="https://cdn.pixabay.com/photo/2023/03/17/20/42/camera-7859402_1280.jpg" width="180px" height="180px" class="radius">
                 </div> 
-                <div class="col-12 col-md-12 col-lg-6">
-                    <div class="card bg-transparent mx-5 fs-5 h-100">
-                    <h1 class="py-4 text-white">{{ colletion.name }}</h1>
+                <div class="col-12 col-md-12 col-lg-6 my-5">
+                    <div class="card bg-white mx-5 fs-5 h-100">
+                    <h1 class="py-4 text-center">{{ colletion.name }}</h1>
                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
                             <div class="carousel-indicators">
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -104,7 +109,7 @@
                     <button id="scrollLeft" class="scroll-btn bg-transparent left fs-2">&lt;</button> <!-- Bouton gauche -->
                         <div class="row scroll-container">
                             {% for products in colletion.products %}
-                                <div class="col-sm-12 col-md-3 col-lg-3 my-3">
+                                <div class="col-sm-3 col-md-3 col-lg-3 my-3">
                                     <div class="card">
                                     <a href="{{ path('products.show', { id:products.id }) }}"><img src="#" class="card-img-top" alt="..."></a>
                                     <div class="card-body">
@@ -128,9 +133,11 @@
                     <li class="list-group-item bg-transparent fs-3"><strong>PRIX en EUROS:</strong> {{ colletion.price}}</li>
                     <li class="list-group-item bg-transparent fs-3"><strong>CATEGORIE :</strong> {{ colletion.category }}</li>
                     <li class="list-group-item bg-transparent fs-3"><strong>DESCRIPTION :</strong> {{ colletion.description|slice(0,600) ~ '...' }}</li>
-                    {# <li class="list-group-item list-group-item-warning">  <a href="{{ path('contact.index') }}" class="btn btn-primary">Reserver</a></li> #}
                 </ul>
             </div> 
+            <div class="col-12 d-flex justify-content-center align-items-center text-center my-5">
+				<a href="">RESERVER AINTENANT</a>
+			</div>
         </div>
 
     </div>
