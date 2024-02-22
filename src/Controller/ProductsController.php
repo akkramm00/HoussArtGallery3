@@ -6,11 +6,13 @@ use App\Entity\Products;
 use App\Repository\ProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\ProductsType;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Contracts\Cache\ItemInterface;
 
 
 class ProductsController extends AbstractController
@@ -38,6 +40,42 @@ class ProductsController extends AbstractController
         );
 
         return $this->render('pages/products/index.html.twig', [
+            'products' => $products
+        ]);
+    }
+    /************************************************************************* */
+    #[Route('/products/publique', 'products.index.public', methods: ['GET'])]
+    /**
+     * this Controller allow us to display all off products public
+     *
+     * @param ProductsRepository $repository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
+     */
+    public function indexPublic(
+        ProductsRepository $repository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
+
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('security.login');
+        }
+
+        $cache = new FilesystemAdapter();
+        $data = $cache->get('products', function (ItemInterface $item) use ($repository) {
+            $item->expiresAfter(15);
+            return $repository->findPublicProducts(null);
+        });
+
+        $products = $paginator->paginate(
+            $data,
+            $request->query->getInt('page', 1),
+            12
+        );
+
+        return $this->render('pages/products/index_public.html.twig', [
             'products' => $products
         ]);
     }

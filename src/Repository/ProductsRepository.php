@@ -20,4 +20,25 @@ class ProductsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Products::class);
     }
+    /*********************************************************************************************************** */
+    /**
+     * This method allow us to find public pproducts based on number of products
+     *
+     * @param integer $nbProducts
+     * @return array
+     */
+    public function findPublicProducts(?int $nbProducts): array
+    {
+        $queryBuilder = $this->createQueryBuilder('p'); // Utilisez "createQueryBuilder" au lieu de "creatQueryBuilder"
+        $queryBuilder->select('p')
+            ->where('p.isPublic = 1')
+            ->orderBy('p.createdAt', 'DESC');
+
+        if (!$nbProducts !== 0 || !$nbProducts !== null) {
+            $queryBuilder->setMaxResults($nbProducts);
+        }
+
+        return $queryBuilder->getQuery()
+            ->getResult();
+    }
 }

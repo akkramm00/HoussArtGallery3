@@ -23,13 +23,15 @@ body{
 }
 .artist{
     font-family: 'Ruthie', cursive;
+    font-size: 5rem;
+    font-weight: bold;
 }
 .radius{
     border-radius: 50%;
     box-shadow: 0 0 1rem #000;
 }
 hr{
-    border: solid 1px yellow; 
+    border: solid 1px #fff; 
 }
 </style>
     
@@ -61,9 +63,9 @@ hr{
                 <div class="col-12 d-flex justify-content-end align-item-center ">
                     <p class="mx-3 fs-1 text-warning artist"> Artiste : {{ colletion.artist}}</p>
                 </div> 
-                <div class="col-12 col-md-6 col-lg-5">
-                    <div class="card h-100 box-ch rounded-0 bg-warning">
-                    <h1 class="p-4 text-white">{{ colletion.name}}</h1>
+                <div class="col-12 col-md-12 col-lg-8">
+                    <div class="card h-100 box-ch rounded-0 border-none bg-transparent">
+                    <h1 class="p-4 text-white text-center artist">{{ colletion.name}}</h1>
                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
                             <div class="carousel-indicators">
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -90,17 +92,15 @@ hr{
                             <span class="visually-hidden">Next</span>
                             </button>
                         </div>
-                        <div class="card-footer bg-secondary my-3">
-                           <small class="text-white fs-5"><strong>Date de publication :</strong>{{ colletion.createdAt|date('d/m/Y') }}</small>
-                        </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 col-lg-5 critéres text-start d-flex-column justify-content-center align-items-center py-4">
+                <div class="col-12 col-md-12 col-lg-4 critéres text-start d-flex-column justify-content-center align-items-center py-4">
                     <ul class="description liste fs-4 mt-4 py-4">
                         <li class="list-group-item"><strong>NOM :</strong> {{ colletion.name}}</li>
                         <li class="list-group-item"><strong>ARTIST :</strong> {{ colletion.artist}}</li>
                         <li class="list-group-item"><strong>PRIX (en €)</strong>: {{ colletion.price }}</li>
                         <li class="list-group-item"><strong>CATEGORIE</strong>: {{ colletion.category }}</li>
+                        <li class="list-group-item"><strong>DATE DE PUBLICATION</strong>: {{ colletion.createdAt|date('d/m/Y') }}</li>
                         <li class="list-group-item"><strong>DESCRIPTION :</strong> {{ colletion.description|slice(0,500) ~ '...' }}</li>
                     </ul>
                     <a href="{{ path('collection.show', { id:colletion.id }) }}" class="btn btn-warning col-12 justify-content-center align-items-center">
