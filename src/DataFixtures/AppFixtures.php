@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Mark;
 use App\Entity\User;
 use App\Entity\Products;
 use App\Entity\Colletion;
@@ -63,6 +64,7 @@ class AppFixtures extends Fixture
         }
 
         // Collection
+        $colletions = [];
         for ($c = 0; $c < 30; $c++) {
             $colletion = new Colletion();
             $colletion->setName($this->faker->words(2, true))
@@ -79,7 +81,20 @@ class AppFixtures extends Fixture
                 $colletion->addProduct($product[mt_rand(0, count($product) - 1)]);
             }
 
+            $colletions[] = $colletion;
             $manager->persist($colletion);
+        }
+
+        // Marks
+        foreach ($colletions as $colletion) {
+            for ($x = 0; $x < mt_rand(0, 4); $x++) {
+                $mark = new Mark();
+                $mark->setMark(mt_rand(1, 5))
+                    ->setUser($users[mt_rand(0, count($users) - 1)])
+                    ->setColletion($colletion);
+
+                $manager->persist($mark);
+            }
         }
 
 

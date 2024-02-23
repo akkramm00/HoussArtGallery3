@@ -63,6 +63,10 @@
     background: transparent;
     color: #fff;
     }
+    .average{
+        background: #caa502;
+		color: white;
+    }
 
 </style>
 
@@ -70,12 +74,21 @@
     <div class="container-fluid banner py-5">
         <div class="container opacity d-flex justify-content-center align-items-center">
             <div class="row section d-flex justify-content-centers align-items-center">
+
+             {% for message in app.flashes('success') %}
+               <div class="alert alert-success text-center mt-4">
+                {{ message}}
+               </div>
+               {% endfor %}
+
                 <div class="col-12 col-md-12 col-lg-6">
                     <img src="https://cdn.pixabay.com/photo/2023/03/17/20/42/camera-7859402_1280.jpg" width="180px" height="180px" class="radius">
                 </div> 
                 <div class="col-12 col-md-12 col-lg-6 my-5">
                     <div class="card bg-white mx-5 fs-5 h-100">
                     <h1 class="py-4 text-center">{{ colletion.name }}</h1>
+
+                    
                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
                             <div class="carousel-indicators">
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -126,8 +139,11 @@
         </div>
         <div class="container">
             <div class="col-12 critéres text-start d-flex-column justify-content-center align-items-center text-white">
+               
                 <ul class=" list-group  description list-group-flush fs-5">
-                    <h1 class="fs-3 text-center">CARACTERISTIQUES</h1>
+                    <div class="col-12 d-flex average justify-content-center align-items-center text-center my-5">
+                        <h1 class="fs-3 py-4 text-center">CARACTERISTIQUES</h1>                    
+                    </div> 
                     <li class="list-group-item bg-transparent fs-3"><strong>NOM :</strong> {{ colletion.name }}</li>
                     <li class="list-group-item bg-transparent fs-3"><strong>ARTIST :</strong> {{ colletion.artist }}</li>
                     <li class="list-group-item bg-transparent fs-3"><strong>PRIX en EUROS:</strong> {{ colletion.price}}</li>
@@ -135,8 +151,22 @@
                     <li class="list-group-item bg-transparent fs-3"><strong>DESCRIPTION :</strong> {{ colletion.description|slice(0,600) ~ '...' }}</li>
                 </ul>
             </div> 
+            <div class="col-12 d-flex justify-content-center align-items-center text-center text-white fs-3 px-5 my-5">
+                {{ form_start(form) }}
+
+                {{ form_label(form.mark, 'NOTER CETTE COLLECTION', {'label_attr': {'class': 'form-label mt-4'}}) }}
+                {{ form_widget(form.mark, {'attr': {'class': 'form-select'}}) }}
+
+                {{ form_label(form.submit, 'VALIDER', {'label_attr': {'class': 'hidden'}}) }}
+                {{ form_widget(form.submit, {'attr': {'class': 'btn btn-warning mt-2'}}) }}
+
+                {{ form_end(form) }}
+            </div> 
+            <div class="col-12 d-flex average justify-content-center align-items-center text-center my-5">
+                <p class="fs-4 py-3">La moyenne de cette collection est de {{ colletion.average|number_format(2, '.', ',' ) }}/5</p>
+            </div> 
             <div class="col-12 d-flex justify-content-center align-items-center text-center my-5">
-				<a href="">RESERVER AINTENANT</a>
+				<a href="">RESERVER MAINTENANT</a>
 			</div>
         </div>
 

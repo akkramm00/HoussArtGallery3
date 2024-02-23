@@ -66,12 +66,17 @@ class Colletion
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    #[ORM\OneToMany(mappedBy: 'colletion', targetEntity: Mark::class, orphanRemoval: true)]
+    private Collection $marks;
+
+    private ?float $average = null;
 
     public function __construct()
     {
         $this->products = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
+        $this->marks = new ArrayCollection();
     }
 
     #[ORM\PrePersist()]
@@ -227,5 +232,56 @@ class Colletion
         $this->user = $user;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Mark>
+     */
+    public function getMarks(): Collection
+    {
+        return $this->marks;
+    }
+
+    public function addMark(Mark $mark): static
+    {
+        if (!$this->marks->contains($mark)) {
+            $this->marks->add($mark);
+            $mark->setColletion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMark(Mark $mark): static
+    {
+        if ($this->marks->removeElement($mark)) {
+            // set the owning side to null (unless already changed)
+            if ($mark->getColletion() === $this) {
+                $mark->setColletion(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get the value of average/ Calculer la valeur de la moyenne de la note.
+     */
+    public function getAverage()
+    {
+        $marks = $this->marks;
+        if ($marks->toArray() === []) {
+            $this->average = null;
+            return $this->average;
+        }
+
+        $total = 0;
+        foreach ($marks as $mark) {
+            $total += $mark->getMark();
+        }
+
+        $this->average = $total / count($marks);
+
+        return $this->average;
     }
 }

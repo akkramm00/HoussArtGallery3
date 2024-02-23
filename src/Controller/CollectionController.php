@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Colletion;
 use App\Form\CollectionType;
+use App\Entity\Colletion;
+use App\Entity\Mark;
+use App\Form\MarkType;
 use App\Repository\ColletionRepository;
+use App\Repository\MarkRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -186,14 +189,31 @@ class CollectionController extends AbstractController
         return $this->redirectToRoute('collection.index');
     }
     /************************************************************************* */
-    #[Route('/collection/show/{id}', 'collection.show', methods: ['GET'])]
+    /**
+     * Undocumented function
+     *
+     * @param Colletion $colletion
+     * @param ColletionRepository $repository
+     * @param MarkRepository $markRepository
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @param [type] $id
+     * @return Response
+     */
+    #[Route('/collection/show/{id}', 'collection.show', methods: ['GET', 'POST'])]
     public function show(
+        Colletion $colletion,
         ColletionRepository $repository,
+        MarkRepository $markRepository,
+        Request $request,
+        EntityManagerInterface $manager,
         $id
     ): Response {
         $this->denyAccessUnlessGranted('ROLE_USER');
         $colletion = $repository->findOneBy(["id" => $id]);
 
+        $mark = new Mark();
+        $form = $this->createForm(MarkType::class, $mark);
 
         if (!$colletion) {
             // Le produit n'existe pas, renvoyez une réponse d'erreur
@@ -201,11 +221,41 @@ class CollectionController extends AbstractController
                 'warning',
                 'Le produit en question n\'a pas été trouvé !'
             );
+
             return $this->redirectToRoute('home.index');
+        }
+
+        // formulaire de Notation de la collection
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $mark->setUser($this->getUser())
+                ->setColletion($colletion);
+
+            $existingMark = $markRepository->findOneBy([
+                'user' => $this->getUser(),
+                'colletion' => $colletion
+            ]);
+
+            if (!$existingMark) {
+                $manager->persist($mark);
+            } else {
+                $existingMark->setMark(
+                    $form->getData()->getMark()
+                );
+            }
+
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'Votre note a bien été prise en compte.'
+            );
         }
 
         return $this->render('pages/collection/show.html.twig', [
             'colletion' => $colletion,
+            'form' => $form->createView()
         ]);
     }
 }
