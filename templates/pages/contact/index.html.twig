@@ -1,0 +1,80 @@
+{% extends "base.html.twig" %}
+
+{% block title %} HoussArtGallery - Formulaire de contact{% endblock %}
+
+{% block body %}
+
+<style>
+    .banner{
+        height:100%;
+        background:linear-gradient(rgba(0, 0, 0,.6),rgba(0, 0, 0,.6)),url(https://cdn.pixabay.com/photo/2016/09/04/12/38/living-room-1643855_1280.jpg) center center fixed no-repeat;
+        background-size:cover;
+        
+    }
+    .banner .bg{
+        background:  #caa502;
+        padding: 2rem;
+    }
+
+</style>
+
+<body>
+
+	{% block login %}
+		{% include "partials/_login.html.twig" %}
+	{% endblock %}
+
+<div class="container-fluid banner py-5">
+    <div class="container my-5">
+        <div class="row d-flex justify-content-center align-items-center my-5">
+            <div class="col-sm-12 col-md-10 my-5">
+            <div class="row my-5">
+            </div>
+                <div class="row my-5">
+                    <h1 class="mt-5 text-center text-white fs-1 fw-bold heading">FORMULAIRE DE CONTACT</h1>
+
+                    {# Lire et afficher un message flash de type 'success' #}
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success mt-4">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="row bg my-5">
+                    {{ form_start(form) }}
+                    <div class="form-group text-white fs-3">
+                        {{ form_label(form.fullName, 'Nom / Prénom', {'label_attr': {'class': 'form-label mt-4'}}) }}
+                        {{ form_widget(form.fullName, {'attr': {'class': 'form-control fs-4', 'minlength': 2, 'maxlength': 50}}) }}
+                        {{ form_errors(form.fullName) }}
+                    </div>
+
+                    <div class="form-group text-white fs-3">
+                        {{ form_label(form.email, 'Adresse email', {'label_attr': {'class': 'form-label mt-4'}}) }}
+                        {{ form_widget(form.email, {'attr': {'class': 'form-control fs-4', 'minlenght': 2, 'maxlength': 180}}) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+
+                    <div class="form-group text-white fs-3">
+                        {{ form_label(form.subject, 'Sujet', {'label_attr': {'class': 'form-label mt-4'}}) }}
+                        {{ form_widget(form.subject, {'attr': {'class': 'form-control fs-4', 'minlength': 2, 'maxlength': 100}}) }}
+                        {{ form_errors(form.subject) }}
+                    </div>
+
+                    <div class="form-group text-white fs-3">
+                        {{ form_label(form.message, 'Message', {'label_attr': {'class': 'form-label mt-4'}}) }}
+                        {{ form_widget(form.message, {'attr': {'class': 'form-control fs-4', 'minlength': 2, 'maxlength': 300}}) }}
+                        {{ form_errors(form.message) }}
+                    </div>
+
+                    <div class="form-group text-white">
+                        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-warning rounded-none mt-4'}}) }}
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</body>
+
+{% endblock %}

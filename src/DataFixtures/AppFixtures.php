@@ -6,6 +6,7 @@ use App\Entity\Mark;
 use App\Entity\User;
 use App\Entity\Products;
 use App\Entity\Colletion;
+use App\Entity\Contact;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -95,6 +96,17 @@ class AppFixtures extends Fixture
 
                 $manager->persist($mark);
             }
+        }
+
+        // Contact
+        for ($b = 0; $b < 5; $b++) {
+            $contact = new Contact();
+            $contact->setFullName($this->faker->name())
+                ->setEmail($this->faker->email())
+                ->setSubject('Demande n° . ($c + 1')
+                ->setMessage($this->faker->text());
+
+            $manager->persist($contact);
         }
 
 
