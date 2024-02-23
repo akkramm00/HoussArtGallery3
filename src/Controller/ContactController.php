@@ -5,14 +5,14 @@ namespace App\Controller;
 use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Repository\ContactRepository;
-use App\Service\MailService;
 use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 class ContactController extends AbstractController
 {
@@ -27,7 +27,7 @@ class ContactController extends AbstractController
     public function index(
         Request $request,
         EntityManagerInterface $manager,
-        //MailService $mailService
+        MailerInterface $mailer
     ): Response {
         $contact = new Contact();
 
@@ -47,13 +47,13 @@ class ContactController extends AbstractController
 
 
             //Email
-            // $mailService->sendEmail(
-            //     $contact->getEmail(),
-            //     $contact->getSubject(),
-            //     'emails/contact.html.twig',
-            //     ['contact' => $contact]
+            $email = (new Email())
+                ->from($contact->getEmail())
+                ->to('admin@houssartgallery.com')
+                ->subject($contact->getSubject())
+                ->html($contact->getMessage());
 
-            // );
+            $mailer->send($email);
 
             $this->addFlash(
                 'success',
