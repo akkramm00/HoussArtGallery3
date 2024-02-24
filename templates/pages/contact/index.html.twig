@@ -12,8 +12,13 @@
         
     }
     .banner .bg{
-        background:  #caa502;
+        background:linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)),url(images/fondCRUD.jpg) center center no-repeat;
+        background-size:cover;
         padding: 2rem;
+        box-shadow: 0 0 1rem #fff;
+    }
+    hr{
+    border: solid 1px #fff; 
     }
 
 </style>
@@ -25,13 +30,15 @@
 	{% endblock %}
 
 <div class="container-fluid banner py-5">
+
+<!---    Contact form start   -->
     <div class="container my-5">
         <div class="row d-flex justify-content-center align-items-center my-5">
             <div class="col-sm-12 col-md-10 my-5">
             <div class="row my-5">
             </div>
                 <div class="row my-5">
-                    <h1 class="mt-5 text-center text-white fs-1 fw-bold heading">FORMULAIRE DE CONTACT</h1>
+                    <h1 class="mt-5 text-center text-white fw-bold heading">FORMULAIRE DE CONTACT</h1>
 
                     {# Lire et afficher un message flash de type 'success' #}
                     {% for message in app.flashes('success') %}
@@ -73,7 +80,61 @@
                 </div>
             </div>
         </div>
+        <hr>
     </div>
+    <!---    Contact form start   -->
+    <!---    Article Pub start    -->
+    <div class="container my-5">
+        <h1 class="heading  text-white my-5">Pourquoi Choisir Nos Services ?</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4 my-5">
+        <div class="col">
+          <div class="card bg-transparent h-100">
+            <img src="{{ asset('images/fondHome.jpg') }}" class="card-img-top img py-5" alt="...">
+            <div class="card-body">
+              <h5 class="card-title fs-2 text-warning fw-bold">Où l'art respire, l'âme s'inspire. </h5>
+              <p class="card-text  text-center text-white fs-3">"Entre rêve et réalité, l'art s'éveille. Chaque œuvre, un univers à découvrir. Là où les émotions se croisent, l'inspiration prend vie. Votre galerie, le carrefour des imaginaires."</p>
+            </div>
+            <div class="card-footer text-center">
+              <small class="text-info fs-5">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card bg-transparent h-100">
+            <img src="{{ asset('images/fondHome.jpg') }}" class="card-img-top img py-5" alt="...">
+            <div class="card-body">
+              <h5 class="card-title fs-2 text-warning fw-bold">Unis dans l'excellence, créons l'exception</h5>
+              <p class="card-text text-white text-center  fs-3">Main dans la main avec les maîtres de l'art, Nous tissons l'avenir des chefs-d'œuvre. Dans l'union de nos visions, l'excellence se révèle, Forgeant des partenariats aussi uniques que nos créations.</p>
+            </div>
+            <div class="card-footer text-center ">
+              <small class="text-info fs-5">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card bg-transparent h-100">
+            <img src="{{ asset('images/fondHome.jpg') }}" class="card-img-top img py-5" alt="...">
+            <div class="card-body">
+              <h5 class="card-title fs-2 text-warning fw-bold">Ensemble, façonnons l'avenir de l'art.</h5>
+              <p class="card-text text-white text-center  fs-3">Main dans la main avec les maîtres de l'art, Ensemble, élevons le standard de la beauté, Et sculptons l'héritage de demain</p>
+            </div>
+            <div class="card-footer  text-center">
+              <small class="text-info fs-5">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="container d-flex justify-content-center align-items-center mt-5">
+        <div class="row d-flex justify-content-center align-items-center my-5">
+            <div class="col">
+                <a href="" class="btn btn-warning  rounded-0 px-5 py-4">
+                    VOIR PLUS
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Article Pub end-->
   </div>
 </body>
 
