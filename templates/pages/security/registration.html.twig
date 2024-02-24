@@ -14,7 +14,6 @@
         background-color: #c7a703;
         padding: 2rem;
         box-shadow: var(--box_shadow);
-        border-radius: 1rem;
     }
     .banner{
         height:760px;
@@ -27,7 +26,7 @@
 <body>
     <div class="container-fluid banner">
     <div class="container">
-        <div class="row  d-flex justify-content-center align-items-center">
+        <div class="row  d-flex justify-content-center align-items-center my-5">
         <div class="col-sm-12 col-md-10 my-5">
 
             <div class="row my-5">
@@ -36,7 +35,7 @@
 	            {% endblock %}
             </div>
             <div class="row">
-               <h1 class=" text-center fs-1 heading text-white">Formulaire D'Inscription</h1>
+               <h1 class="text-center heading text-white py-5">Formulaire D'Inscription</h1>
 
                {# read and display just one flash message type #}
                {% for message in app.flashes('success') %}

@@ -1,0 +1,221 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HoussArtGallery- Nos Collections{% endblock %}
+
+{% block body %}
+<style>
+    .banner{
+        height:100%;
+        background:linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5)),url(images/fondHome.jpg) center center fixed no-repeat;
+        background-size:cover;
+    }
+    .banner a,
+    .banner1 a{
+		background: #caa502;
+		color: white;
+		text-decoration: none;
+		padding: 20px;
+		font-size: 1.5rem;
+		font-family: 'roboto', serif;
+    margin: 0 1rem
+	  }
+    .title{
+        margin: 10rem 0 0 ;
+    }
+     .pagination li.active a{
+        background-color:  #caa502;
+        color: white;
+    }
+</style>
+
+<body>
+<div class="container-fluid banner py-5">
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center pt-5">
+            <div class="col-12 title  d-flex justify-content-center align-items-center text-white text-center">
+                <h1 class="heading text-white fw-bold">A Propos De Nous</h1>
+            </div>
+        </div>
+
+        <div class="row  title d-flex- justify-content-center align-items-center mb-4">
+            <div class="col-sm-12 col-md-12 col-lg-6 d-flex justify-content-center align-items-center text-white text-center">
+                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="{{asset('images/expo1.jpg')}}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="{{asset('images/expo2.jpg')}}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="{{asset('images/expo4.jpg')}}" class="d-block w-100" alt="...">
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-6 d-flex-colummn justify-content-center align-items-center text-white text-center">
+                <h2 class="heading text-warning fs-1 py-2 fw-bold">Notre Histoire</h2>
+                <p class="text-white p-4 fs-3"> HoussArtGallery, nichée au cœur d'une région riche en inspirations,
+                est née d'une passion inébranlable pour l'art sous toutes ses formes. Fondée en 2010 par Houssaine,
+                un visionnaire animé par le désir de mettre en lumière le génie créatif, 
+                la galerie a rapidement établi sa réputation en tant qu'espace d'avant-garde.
+                Elle a pour vocation de découvrir et de promouvoir les artistes émergents ainsi que de célébrer les maîtres reconnus,
+                créant ainsi un pont entre le passé, le présent et l'avenir de l'art.
+                Au fil des ans, HoussArtGallery a organisé d'innombrables expositions,
+                devenant un lieu de rencontre incontournable pour les amateurs d'art et les collectionneurs.
+                Sa contribution significative à la scène artistique lui a valu une reconnaissance internationale, 
+                tout en restant profondément enracinée dans sa communauté locale.
+                Houssaine et son équipe continuent d'insuffler leur passion et leur dévouement dans chaque projet,
+                affirmant l'engagement de HoussArtGallery à enrichir la culture artistique et à inspirer les générations futures.
+                </p>
+            </div>
+            <div class="col-12 d-flex justify-content-center align-items-center text-center my-5">
+				       <a href="{{ path('products.index.public')}}">VOIR TOUS NOS TABLEAUX</a>
+			      </div>
+        </div>
+
+      </div>
+    </div>
+</div>
+
+<div class="container-fluid banner1 bg-white py-5">
+        <div class="row d-flex justify-content-center align-items-center mb-4">
+         <h1 class="heading fw-bold py-5">Art Sans Frontières</h1>
+         <h1 class="heading fw-bold fs-2 text-dark">Où chaque création raconte une histoire universelle</h1>
+          <div class="col-12 col-md-10 col-lg-10 py-5">
+            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                 <div class="carousel-indicators">
+                   <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                   <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                   <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                 </div>
+                 <div class="carousel-inner">
+                   <div class="carousel-item active" data-bs-interval="10000">
+                     <img src="{{asset('images/expo5.jpg') }}" class="d-block w-100" alt="...">
+                     <div class="carousel-caption d-none d-md-block">
+                       <h5 class="text-white heading">L'art contemporain !</h5>
+                       <p class="text-white fs-1">L'art contemporain, miroir audacieux de notre époque, 
+                       défie les conventions pour révéler les nuances de la condition humaine. 
+                       Une exploration sans fin de formes, couleurs et idées
+                       , où le traditionnel et le novateur se fondent pour repousser
+                        les limites de la créativité. À travers lui, nous voyageons dans les méandres
+                         de l'innovation et de l'expression personnelle, invités à questionner,
+                          à ressentir, et à voir le monde sous un jour nouveau</p>
+                     </div>
+                   </div>
+                   <div class="carousel-item" data-bs-interval="2000">
+                     <img src="{{asset('images/expo3.webp') }}" class="d-block w-100" alt="...">
+                     <div class="carousel-caption d-none d-md-block">
+                       <h5 class="text-white heading">L'art abstrait!</h5>
+                       <p class="text-white fs-1">L'art abstrait est une danse des formes et des couleurs
+                        qui transcende la réalité visible, invitant l'observateur dans un voyage intérieur 
+                        de réflexion et d'émotion.
+                        Libéré des contraintes de la représentation figurative, 
+                        il offre un espace infini pour l'interprétation personnelle, 
+                        où chaque toile devient un univers à explorer. Au cœur de cette expression pure,
+                         l'art abstrait parle le langage universel des sensations, éveillant 
+                         les sens à la beauté cachée dans l'immatériel.</p>
+                     </div>
+                   </div>
+                   <div class="carousel-item">
+                     <img src="{{asset('images/expo7.jpg') }}" class="d-block w-100" alt="...">
+                     <div class="carousel-caption d-none d-md-block">
+                       <h5 class="text-white heading">L'art Figuratif !</h5>
+                       <p class="text-white fs-1">L'art figuratif, ancré dans la représentation du monde visible,
+                        est une fenêtre ouverte sur les récits et les émotions humaines.
+                         À travers la précision du trait et la richesse des couleurs, 
+                         il capture l'essence de la réalité, transformant le quotidien en extraordinaire.</p>
+                     </div>
+                   </div>
+                 </div>
+                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                   <span class="visually-hidden">Previous</span>
+                 </button>
+                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                   <span class="visually-hidden">Next</span>
+                 </button>
+            </div>
+          </div>
+
+          <div class="col-12 d-flex justify-content-center align-items-center text-center my-5">
+				       <a href="{{ path('collection.index.public')}}">VOIR TOUS NOS COLLECTIONS</a>
+			      </div>
+        </div>
+      </div>
+
+<div class="container-fluid banner py-5">
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center pt-5">
+            <div class="col-12 title  d-flex justify-content-center align-items-center text-white text-center">
+                <h1 class="heading text-white fw-bold">Nos Partenaires</h1>
+            </div>
+        </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class="card h-100">
+          <img src="{{asset('images/expo6.png') }}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title heading fs-1">Artistes</h5>
+            <p class="card-text fs-3">"Collaborer avec tous les artistes, c'est tisser un riche tapis d'idées, de styles et de visions,
+             créant un kaléidoscope culturel sans précédent. Dans cet espace de création partagée, 
+             chaque pinceau, chaque note, et chaque mot contribue à une symphonie d'innovation et d'harmonie. 
+            Ensemble, nous bâtissons un monde où l'art est le langage universel, célébrant la diversité et l'unité dans chaque création."</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class="card h-100">
+          <img src="{{asset('images/expo4.jpg') }}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title heading fs-1">Les Professionnels</h5>
+            <p class="card-text fs-3">"En collaborant avec des professionnels de l'art, nous tissons un réseau d'excellence,
+             où savoir-faire et passion se rencontrent pour repousser les frontières de la créativité.
+              Chaque projet devient une quête de perfection, unissant les talents pour élever l'art dans toutes ses dimensions.
+               Ensemble, nous façonnons un avenir où l'expertise rencontre l'innovation, créant des œuvres qui inspirent,
+                éduquent et transcendent, pour un héritage culturel enrichi et pérenne."</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-4">
+        <div class="card h-100">
+          <img src="{{asset('images/expo2.jpg') }}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title heading fs-1">Les établissements </h5>
+            <p class="card-text fs-3">"Nos établissements d'art sont des sanctuaires de la créativité, des lieux où l'inspiration se fond avec 
+            l'éducation pour façonner les visionnaires de demain.
+             Ici, chaque espace respire l'histoire et l'innovation, offrant un terrain fertile
+              à l'exploration artistique dans toutes ses formes. En cultivant un environnement où la tradition rencontre l'avant-garde,
+               nous engageons les esprits à repenser le monde à travers le prisme de l'art, élevant ainsi le dialogue culturel
+                et enrichissant notre tissu social."</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 d-flex justify-content-center align-items-center text-center my-5">
+				       <a href="{{ path('contact.index')}}">CONTACTEZ-NOUS</a>
+				       <a href="{{ path('security.registration')}}">S'INSCRIRE</a>
+			</div>
+    </div>
+  </div>
+</div>
+</body>
+{% endblock %}
