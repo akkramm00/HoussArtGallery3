@@ -82,6 +82,7 @@ class ContactController extends AbstractController
         PaginatorInterface $paginator,
         Request $request
     ): Response {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $contact = $paginator->paginate(
             $repository->findAll(),
             $request->query->getInt('page', 1),
@@ -102,6 +103,7 @@ class ContactController extends AbstractController
         Contact $contact,
         $id
     ): Response {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $contact = $repository->findOneBy(["id" => $id]);
         if (!$contact) {
             $this->addFlash(

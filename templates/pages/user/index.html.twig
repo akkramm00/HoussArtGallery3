@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} HoussArtGallery - Les Utilsateurs{% endblock %}
+
+{% block body %}
+    
+<style>
+
+    .txt-w {
+        text-decoration: none;
+        color: white;
+    }
+    .table{
+        box-shadow:var(--box_shadow);
+    }
+    .navigation{
+        text-shadow:var(--main);
+        text-color:var(--main);
+    }
+    .btn-info{
+        padding: 0.1rem;
+        background: blue;
+    }
+    .btn-warning{
+        padding: 0.1rem;
+        background: yellow;
+    }
+    .banner{
+        height:800px;
+        background:linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5)),url(images/fondHome.jpg) center center fixed no-repeat;
+        background-size:cover;
+    }
+    .user{
+        text-shadow: 1rem 1rem 1rem black;
+    }
+    .Empty{
+        heigth: 3rem;
+    }
+
+
+</style>
+
+<body>
+    <div class="container-fluid banner py-5">
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center mb-4">
+            <div class="Empty col-12 d-flex justify-content-center align-items-center text-white text-center pt-5 my-5">
+               
+            </div>
+            <div class="user col-12 d-flex justify-content-center align-items-center text-white text-center pt-5">
+                <h1 class="heading text-white py-5">LISTE DES UTILISATEURS</h1>
+            </div>
+          
+                {# read and display just one flash message type #}
+               {% for message in app.flashes('success') %}
+               <div class="alert alert-success mt-4">
+                {{ message}}
+               </div>
+               {% endfor %}
+            <div class="col-10 count mt-4 text-white">
+                <h2>Il y'a {{ user.getTotalItemCount}} utilisateurs au total.</h2>
+            </div>
+
+
+            <div class="col-10 d-flex justify-content-center align-items-center text-center ">
+                <table class="table table-warning table-striped  fs-5 table-hover my-5">
+                    <thead class="py-5 fs-3 text-danger">
+                        <tr>
+                            <th>Numéro</th>
+                            <th>Pseudo</th>
+                            <th>E.mail</th>
+                            <th>Date de création</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in user %}
+                           <tr>
+                                <th  class="d-flex justify-content-center align-items-center fs-5 text-danger">{{ user.id }}</th>
+                                <td>{{ user.pseudo }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.createdAt|date('d/m/Y') }}</td>
+
+                           </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="pagination pagination-lg col-10 d-flex justify-content-center align-items-center fs-3 mb-4 pb-5">
+                {{ knp_pagination_render(user) }}
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+{% endblock %}

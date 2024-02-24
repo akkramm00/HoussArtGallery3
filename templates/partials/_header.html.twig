@@ -32,15 +32,15 @@
 				<li>
 					<a class="dropdown-item" href="{{ path('collection.new') }}">Nouvelle collection</a>
 				</li>
-				{# <li>
-					<a class="dropdown-item" href="{{ path('user.index') }}">Liste des utilisateurs</a>
-				</li> #}
+
+				{% if is_granted('ROLE_ADMIN') %}
 				<li>
-					{# <a class="dropdown-item" href="{{ path('review') }}">Liste des avis</a> #}
+					<a class="dropdown-item" href="{{ path('user.index') }}">Liste des utilisateurs</a>
 				</li>
 				<li>
 					<a class="dropdown-item" href="{{ path('show.index') }}">MessagesContact</a>
 				</li>
+				{% endif %}
 			</ul>
 		</div>
 	{% endif %}

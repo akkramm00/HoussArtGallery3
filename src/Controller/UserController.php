@@ -11,9 +11,36 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 class UserController extends AbstractController
 {
+    /**
+     * This controller display all users
+     *
+     * @param UserRepository $repository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
+     */
+    #[Route('/user', name: 'user.index', methods: ['GET'])]
+    public function index(
+        UserRepository $repository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $user = $paginator->paginate(
+            $repository->findAll(),
+            $request->query->getInt('page', 1),
+            10
+        );
+
+        return $this->render('pages/user/index.html.twig', [
+            'user' => $user
+        ]);
+    }
+    /******************************************************************************* */
     #[Route('/utilisateur/edition/{id}', name: 'user.edit', methods: ['GET', 'POST'])]
     /**
      * This controller allow us to edit user's profile
