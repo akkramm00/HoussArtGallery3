@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HoussArtGallery - Détail De Message{% endblock %}
+
+{% block body %}
+    
+<style>
+
+    body{
+        height:100%;
+        box-sizing: border-box;
+    }
+    .banner{
+        height:800px;
+        background:linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5)),url(https://cdn.pixabay.com/photo/2016/09/04/12/38/living-room-1643855_1280.jpg) center center fixed no-repeat;
+        background-size:cover;
+    }
+    .heading{
+        margin: 15rem;
+        color: #fff;
+    }
+    .card{
+        box-shadow: 0 0 1.5rem #fff;
+    }
+
+</style>
+
+<!-- Review section Start -->
+<body>
+<div class="container-fluid banner py-5">
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center mb-4">
+                <h1 class="heading">DETAIL DU MESSAGE</h1>
+                <div class="col-10 d-flex justify-content-center align-items-center text-center ">
+                    <div class="card text-start bg-transparent text-white fs-3 col-10">
+                      <div class="card-header"><strong>NON/PRENOM :</strong> {{ contact.fullName }}</div>
+                      <div class="card-body">
+                        <h5 class="card-title fs-3"><strong>E.MAIL:</strong><a href="mailto"> {{ contact.email}}</a></h5>
+                      <div class="card-title"><strong>SUJET :</strong> {{ contact.subject }}</div>
+                        <p class="card-text"><strong>MESSAGE :</strong> {{ contact.message}}</p>
+                      </div>
+                      <div class="card-footer fs-4 text-info bg-secondary "><strong>DATE DU MESSAGE :</strong> {{ contact.createdAt|date('d/m/Y') }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+{% endblock %}

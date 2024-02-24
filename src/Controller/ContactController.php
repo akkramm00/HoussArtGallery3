@@ -67,4 +67,80 @@ class ContactController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    /******************************************************************* */
+    #[Route('/contact/show', name: 'show.index', methods: ['GET'])]
+    /**
+     * This controller allow us to show all messagesContact
+     *
+     * @param ContactRepository $repository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
+     */
+    public function show(
+        ContactRepository $repository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
+        $contact = $paginator->paginate(
+            $repository->findAll(),
+            $request->query->getInt('page', 1),
+            10
+        );
+
+        return $this->render('pages/contact/show.html.twig', [
+            'contact' => $contact
+        ]);
+    }
+
+
+    /************************************************************************* */
+    #[Route('/contact/suppression/{id}', 'show.delete', methods: ['GET'])]
+    public function delete(
+        EntityManagerInterface $manager,
+        ContactRepository $repository,
+        Contact $contact,
+        $id
+    ): Response {
+        $contact = $repository->findOneBy(["id" => $id]);
+        if (!$contact) {
+            $this->addFlash(
+                'warning',
+                'Le message en question n\'a pas été trouvé'
+            );
+
+            return $this->redirectToRoute('show.index');
+        }
+        $manager->remove($contact);
+        $manager->flush();
+
+        $this->addflash(
+            'success',
+            'Le message a été supprimé avec succès!'
+        );
+
+        return $this->redirectToRoute('show.index');
+    }
+
+    /*************************************************************** */
+    #[Route('/contact/showById/{id}', 'showById', methods: ['GET'])]
+    public function showById(
+        ContactRepository $repository,
+        $id
+    ): Response {
+        $contact = $repository->findOneBy(["id" => $id]);
+
+        if (!$contact) {
+            // Le produit n'existe pas , renvoyer une reponse d'erreur
+            $this->addflash(
+                'warning',
+                'Le contact en question n\'a pas été trouvé!'
+            );
+            return $this->redirectToRoute('show.index');
+        }
+
+        return $this->render('pages/contact/showById.html.twig', [
+            'contact' => $contact
+        ]);
+    }
 }

@@ -31,6 +31,9 @@ services:
     App\Entity\Colletion:
         public: true
 
+    App\Entity\Contact:
+        public: true
+
     knp_paginator:
         class: Knp\Component\Pager\Paginator
     
