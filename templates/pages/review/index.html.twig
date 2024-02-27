@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} HoussArtGallery- Reviews{% endblock %}
+
+{% block body %}
+    
+<style>
+    .navigation{
+        text-shadow: #caa502;
+        text-color: #caa502;
+    }
+    .banner{
+        height:100%;
+        background:linear-gradient(rgba(0, 0, 0,.1),rgba(0, 0, 0,.1)),url(images/fondHome.jpg) center center fixed no-repeat;
+        background-size:cover;
+    }
+</style>
+
+<body>
+    <div class="container-fluid banner py-5">
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center mb-4">
+            <div class="Empty col-12 d-flex justify-content-center align-items-center text-white text-center pt-5 my-5">
+               
+            </div>
+            <div class="user col-12 d-flex justify-content-center align-items-center text-white text-center pt-5">
+                <h1 class="heading text-white pt-5 fw-bold">REVIEWS</h1>
+            </div>
+          
+                {# read and display just one flash message type #}
+               {% for message in app.flashes('success') %}
+               <div class="alert alert-success mt-4">
+                {{ message}}
+               </div>
+               {% endfor %}
+            <div class="col-10 count mt-4 text-info">
+                <h2>Il y'a {{ review.getTotalItemCount}} avis au total.</h2>
+            </div>
+
+
+            <div class="col-10 d-flex justify-content-center align-items-center text-center ">
+                <table class="table table-warning table-striped  fs-5 table-hover my-5">
+                    <thead class="py-5 fs-3 text-danger">
+                        <tr>
+                            <th>Numéro</th>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Message</th>
+                            <th>Date de création</th>
+                            <th>Edition</th>
+                            <th>Suppression</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for review in review %}
+                           <tr>
+                                <th  class="d-flex justify-content-center align-items-center fs-5 text-danger">{{ review.id }}</th>
+                                <td>{{ review.nom }}</td>
+                                <td>{{ review.prenom }}</td>
+                                <td>{{ review.message|slice(0,50) ~ '...' }}</td>
+                                <td>{{ review.createdAt|date('d/m/Y') }}</td>
+                                <td>
+                                    <a href="{{ path('review.edit', { id: review.id }) }}">Modifier</a>
+                                </td>
+                                <td>
+                                    {# <a href="{{ path('review.delete', { id: review.id }) }}">supprimer</a> #}
+                                </td>
+                           </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="pagination pagination-lg col-10 d-flex justify-content-center align-items-center fs-3 mb-4 pb-5">
+                {{ knp_pagination_render(review) }}
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+{% endblock %}

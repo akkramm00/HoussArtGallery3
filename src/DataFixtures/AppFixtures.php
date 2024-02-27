@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Entity\Products;
 use App\Entity\Colletion;
 use App\Entity\Contact;
+use App\Entity\Review;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -107,6 +108,18 @@ class AppFixtures extends Fixture
                 ->setMessage($this->faker->text());
 
             $manager->persist($contact);
+        }
+
+        // Review
+        for ($r = 0; $r < 10; $r++) {
+            $review = new Review();
+            $review->setNom($this->faker->name())
+                ->setPrenom($this->faker->firstName())
+                ->setMessage($this->faker->text(255))
+                ->setRoles(['ROLE_USER'])
+                ->setIsPublic(mt_rand(0, 1) == 1 ? true : false);
+
+            $manager->persist($review);
         }
 
 

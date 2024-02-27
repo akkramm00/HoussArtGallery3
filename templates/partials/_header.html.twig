@@ -6,8 +6,8 @@
 		<a href="{{ path('home.index') }}">HOME</a>
 		<a href="{{ path('products.index.public')}}">NOS PRODUITS</a>
 		<a href="{{ path('collection.index.public')}}">NOS COLLECTIONS</a>
-		<a href="{{ path('about.index')}}">A PROPOS</a>
-		<a href="#">REVIEWS</a>
+		<a href="{{ path('about.index') }}">A PROPOS</a>
+		<a href="{{ path('review.index.public') }}">REVIEWS</a>
 		<a href="{{ path('contact.index') }}">NOUS CONTACTER</a>
 	</nav>
 
@@ -38,7 +38,10 @@
 					<a class="dropdown-item" href="{{ path('user.index') }}">Liste des utilisateurs</a>
 				</li>
 				<li>
-					<a class="dropdown-item" href="{{ path('show.index') }}">MessagesContact</a>
+					<a class="dropdown-item" href="{{ path('show.index') }}">MessagesContacts</a>
+				</li>
+				<li>
+					<a class="dropdown-item" href="{{ path('review.index') }}">Avis de Contacts</a>
 				</li>
 				{% endif %}
 			</ul>

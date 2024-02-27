@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HoussArtGallery - Les Avis clients{% endblock %}
+
+{% block body %}
+
+<style>
+    .banner{
+        height:100%;
+        background:linear-gradient(rgba(0, 0, 0,.6),rgba(0, 0, 0,.6)),url(https://cdn.pixabay.com/photo/2016/09/04/12/38/living-room-1643855_1280.jpg) center center fixed no-repeat;
+        background-size:cover;
+    }
+    .banner a{
+		background: #caa502;
+		color: white;
+		text-decoration: none;
+		font-size: 1.5rem;
+		font-family: 'roboto', serif;
+		
+	}
+    img{
+        border-radius: 50%;
+        box-shodow: 0 0 1rem black;
+        margin: 2rem;
+    }
+    .heading{
+        margin: 15rem 0 0;
+    }
+</style>
+    
+<body>
+
+	{% block login %}
+		{% include "partials/_login.html.twig" %}
+	{% endblock %}
+    
+<div class="container-fluid banner py-5">
+<div class="container my-5 d-flex -justif-content-center align-items-center">
+<div class="row row-cols-1 row-cols-md-3 flex-wrap g-5">
+    <div class="col-12">
+        <h1 class=" heading text-center text-white">LES AVIS DES CLIENTS</h1>
+    </div>
+
+            <div class="col-12 text-white fs-4">
+            <h2 class="fs-3">Il y'a {{ review.getTotalItemCount}} Avis au total.</h2>
+        </div>
+          {% for review in review %}
+            <div class="col-12 col-md-6 col-lg-4 text-white">
+                <div class="box text-center">
+                    <img src="{{ vich_uploader_asset(review, 'imageFile') }}" width="180px" height="180px">
+                    <div class="content">
+                        <span class="fs-3">{{ review.nom }}</span>
+                        <span class="fs-3">{{ review.prenom }}</span>
+                        <p class="fs-5">{{ review.message|slice(1, 150) ~ '...' }}</p>
+                        <span class="fs-5">{{ review.createdAt|date('d/m/Y') }}</span>
+                        <h3 class="fs-1 text-warning">Satisfait</h3>
+                        <div class="stars fs-2 text-danger mb-4">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                <div class="col-12 d-flex justify-content-center align-items-center text-center">
+                    <a href="{{ path('review.show',  { id: review.id }) }}" class=" rounded-3 mb-5 p-2">Voir Détail</a>
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="pagination pagination-lg col-12 d-flex justify-content-center align-items-center fs-3 mb-4 py-5">
+                {{ knp_pagination_render(review) }}
+            </div>
+
+</div>
+</div>
+</div>
+</body>
+
+{% endblock %}

@@ -30,6 +30,11 @@
         color: white;
         font-family: 'Abril Fatface', serif;
     }
+	 .banner1 img{
+		border-radius: 50%;
+		border: none;
+		box-shadow: 0 0 1rem #000;
+	 }
     .banner p{
         color: white;
         font-size: 3rem;
@@ -227,6 +232,44 @@
 	</div>
 </div>
 <!--  CollectionsHome End -->
+
+<!-- review Section Start -->
+<div class="container-fluid banner1 py-5">
+<div class="container my-5 d-flex justif-content-center align-items-center">
+	<div class="row row-cols-1 row-cols-md-3 flex-wrap g-4">
+		<div class="col-12">
+			<h1 class="heading mb-5 text-center">AVIS DES CLIENTS
+			</h1>
+		</div>
+		{% for review in review %}
+			<div class="col-12 col-md-6 col-lg-3">
+				<div class="box text-center text-white">
+					<img src="{{ vich_uploader_asset(review, 'imageFile') }}" width="180px" height="180px">
+					<div class="content">
+						<span class="fs-3">{{ review.nom }}</span>
+						<span class="fs-3">{{ review.prenom }}</span>
+						<p>{{ review.message|slice(0,100) ~ '...'}}</p>
+						<h3>Satisfait</h3>
+						<div class="stars">
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+		
+		<div class="col-12 d-flex justify-content-center align-items-center text-center my-5">
+				<a href="{{ path('review.index.public')}}">VOIR TOUS LES AVIS</a>
+				<a href="{{ path('review.new') }}"> LAISSEZ VOTRE AVIS</a>
+		</div>
+	</div>
+</div>
+</div>
+<!-- review Section End -->
 
 </body>
 {% endblock %}
