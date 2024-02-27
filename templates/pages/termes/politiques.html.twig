@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HoussArtGallery - Termes et Conditions{% endblock %}
+
+{% block body %}
+<Style>
+    .banner{
+        height:100%;
+        background:linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5)),url(images/fondHome.jpg) center center fixed no-repeat;
+        background-size:cover;
+    }
+    .heading{
+        margin: 15rem 0 0 0;
+        text-shadow: 0 0 1rem #000;
+    }
+</Style>
+<body>
+<div class="container-fluid banner">
+    <div class="container">
+        <div class="row d-flex-column text-white justify-content-center align-items-center">
+            <div class="col-10 d-flex justify-content-center align-items-cente">
+                <h1 class="heading py-5">Politiques d'Utilisation de HouseArtGallery</h1>
+            </div>
+        </div>
+    </div>  
+</div>
+</body>
+
+{% endblock %}
