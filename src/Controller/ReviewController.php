@@ -158,4 +158,42 @@ class ReviewController extends AbstractController
             'review' => $review,
         ]);
     }
+
+    /****************************************************************** */
+    /**
+     * This controller allow us to delete reviews
+     *
+     * @param EntityManagerInterface $manager
+     * @param REviewRepository $repository
+     * @param Review $review
+     * @param [type] $id
+     * @return Response
+     */
+    #[Route('/review/suppression/{id}', 'review.delete', methods: ['GET'])]
+    public function delete(
+        EntityManagerInterface $manager,
+        REviewRepository $repository,
+        Review $review,
+        $id
+    ): Response {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $review = $repository->findOneBy(["id" => $id]);
+        if (!$review) {
+            $this->addflash(
+                'warning',
+                'L\'avis en question n\'a pas été trouvé !'
+            );
+
+            return $this->redirectToRoute('review.index');
+        }
+        $manager->remove($review);
+        $manager->flush();
+
+        $this->addflash(
+            'success',
+            'l\'avis a été supprimé avec succès !'
+        );
+
+        return $this->redirectToRoute('review.index');
+    }
 }

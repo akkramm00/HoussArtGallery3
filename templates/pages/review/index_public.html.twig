@@ -41,8 +41,10 @@
         <h1 class=" heading text-center text-white">LES AVIS DES CLIENTS</h1>
     </div>
 
-            <div class="col-12 text-white fs-4">
-            <h2 class="fs-3">Il y'a {{ review.getTotalItemCount}} Avis au total.</h2>
+        <div class="col-12 text-white fs-4">
+            <a href="{{ path('review.new') }}" class="mb-5 p-3 my-5">Ajouter Un Avis</a>
+            <h2 class="fs-3 mt-4">Il y'a {{ review.getTotalItemCount}} Avis au total.</h2>
+
         </div>
           {% for review in review %}
             <div class="col-12 col-md-6 col-lg-4 text-white">
