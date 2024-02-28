@@ -71,9 +71,10 @@ class ReviewController extends AbstractController
     #[Route('/review/nouveau', name: 'review.new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
-        EntityManagerInterface $manager
+        EntityManagerInterface $manager,
     ): Response {
         $this->denyAccessUnlessGranted('ROLE_USER');
+
         $review = new Review();
         $form = $this->createForm(ReviewType::class, $review);
 
