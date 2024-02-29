@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Products;
+use App\Entity\ImageProducts;
 use App\Repository\ProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\ProductsType;
@@ -87,6 +88,12 @@ class ProductsController extends AbstractController
      * @param EntityManagerInterface $manager
      * @return Response
      */
+    private $imageDir;
+
+    public function __construct(string $imageDir)
+    {
+        $this->imageDir = $imageDir;
+    }
     #[Route('/products/nouveau', 'products.new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
@@ -100,6 +107,17 @@ class ProductsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $products = $form->getData();
             $products->setUser($this->getUser());
+
+            // Gestion des images téléchargées
+            $images = $form->get('images')->getData(); // Assurez-vous que votre formulaire retourne un tableau d'instances de `Symfony\Component\HttpFoundation\File\UploadedFile`
+            foreach ($images as $image) {
+                $imageProducts = new ImageProducts();
+                $imageProducts->setImageFile($image);
+
+
+                $imageProducts->setProduct($products); // Associez l'image au produit
+                $manager->persist($imageProducts); // Persistez l'entité ImageProduct
+            }
 
             $manager->persist($products);
             $manager->flush();
@@ -136,7 +154,7 @@ class ProductsController extends AbstractController
         $id
     ): Response {
         //on vérife si l'utilisateur peut éditer avec le voter
-        $this->denyAccessUnlessGranted('PRODUCT_EDIT', $products);
+        $this->denyAccessUnlessGranted('ROLE_USER');
         // $this->denyAccessUnlessGranted('ROLE_PRODUCT_ADMIN');
         $products = $repository->findOneBy(["id" => $id]);
         $form = $this->createForm(ProductsType::class, $products);

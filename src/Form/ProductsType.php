@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class ProductsType extends AbstractType
@@ -106,15 +107,18 @@ class ProductsType extends AbstractType
                     new Assert\NotBlank()
                 ]
             ])
-            // ->add('imageFile', FileType::class, [
-            //     'attr' => [
-            //         'class' => 'form-control'
-            //     ],
-            //     'label' => 'Image du produit',
-            //     'label_attr' => [
-            //         'class' => 'form-label mt-4'
-            //     ]
-            // ])
+            ->add('images', FileType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Images du produit',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'mapped' => false, // Si 'images' n'est pas une propriété directe de l'entité Products
+                'required' => false,
+                'multiple' => true,
+            ])
             ->add('isPublic', CheckboxType::class, [
                 'attr' => [
                     'class' => 'form-check-input',
