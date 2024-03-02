@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HoussArtGallery- Nos Products{% endblock %}
+
+{% block body %}
+<style>
+    .banner{
+        height:1000px;
+        background:linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5)),url(images/fondHome.jpg) center center fixed no-repeat;
+        background-size:cover;
+    }
+    .title{
+        margin: 15rem 0;
+    }
+    .heading{
+        font-family: 'roboto';
+    }
+    .pagination li.active a{
+        background-color:  #caa502;
+        color: white;
+    }
+    .btn-warning{
+        background: #caa502;
+        border-radius: 1rem;
+    }
+    .btn-warning:hover{
+        background: #fff;
+        color: #caa502;
+    }
+
+</style>
+
+<body>
+<div class="container-fluid banner py-5">
+    <div class="container">
+        <div class="row title d-flex justify-content-center align-items-center">
+            <div class="col-12 d-flex justify-content-center align-items-center text-white text-center">
+            {% if not image_products.items is same as ([]) %}
+                <h1 class="heading fs-1">MES IMAGES PRODUITS</h1>
+            </div>
+          
+                {# read and display just one flash message type #}
+               {% for message in app.flashes('success') %}
+               <div class="alert alert-success">
+                {{ message}}
+               </div>
+               {% endfor %}
+            <div class="col-10 count mt-4 text-white">
+            <button class="btn-warning px-3 py-3 my-3  fs-3">
+                <a class="text-white text-decoration-none" href="{{ path('products.new') }}">Créer un produit</a>
+            </button>
+                <h2 class="fs-4 py-4">Il y'a {{ image_products.getTotalItemCount}} images au total.</h2>
+            </div>
+
+            <div class="col-10 d-flex justify-content-center align-items-center text-center ">
+                <table class="table table-light fs-5 table-striped table-hover">
+                    <thead class="text-warning">
+                        <tr>
+                            <th>Numéro</th>
+                            <th>Nom de l'image</th>
+                            <th>Date de Création</th>
+                            <th>Edition</th>
+                            <th>Suppression</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for image_products in image_productsproducts %}
+                        <tr>
+                            <th  class="d-flex justify-content-center align-items-center text-warning">{{ image_products.id }}</th>
+                            <th>{{ image_products.name }}</th>
+                            <td>{{ image_products.createdAt|date('d/m/Y') }}</td>
+                            <td>
+                               {# <a href="{{ path('products.edit', { id: products.id }) }}" class="text-warning">Modifier</a> #}
+                            </td>
+                            <td>
+                               {# <a href="{{ path('products.delete', { id: products.id }) }}" class="text-danger">supprimer</a> #}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination pagination-lg col-10 d-flex justify-content-center align-items-center my-4">
+                {{ knp_pagination_render(image_products) }}
+            </div>
+            {% else %}
+            <h4> Il n'y a pas d'images </H4>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}

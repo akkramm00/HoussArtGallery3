@@ -15,11 +15,11 @@ class ImageProducts
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    #[Vich\UploadableField(mapping: 'product_images', fileNameProperty: 'imageName')]
-    private ?File $imageFile = null;
+    #[Vich\UploadableField(mapping: 'imagesProducts', fileNameProperty: 'imageName')]
+    private ?File $imageFile;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private ?string $imageName = null;
+    private ?string $imageName = 'nom_par_defaut.jpg';
 
     #[ORM\ManyToOne(targetEntity: Products::class, inversedBy: 'images')]
     #[ORM\JoinColumn(nullable: false)]

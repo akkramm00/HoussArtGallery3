@@ -81,6 +81,12 @@ class ProductsController extends AbstractController
         ]);
     }
     /***************************************************************************************** */
+    private $imageDirectory;
+
+    public function __construct(string $imageDirectory)
+    {
+        $this->imageDirectory = $imageDirectory;
+    }
     /**
      * This controller allow us to create a new product
      *
@@ -88,12 +94,6 @@ class ProductsController extends AbstractController
      * @param EntityManagerInterface $manager
      * @return Response
      */
-    private $imageDir;
-
-    public function __construct(string $imageDir)
-    {
-        $this->imageDir = $imageDir;
-    }
     #[Route('/products/nouveau', 'products.new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
