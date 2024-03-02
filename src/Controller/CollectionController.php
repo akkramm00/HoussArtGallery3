@@ -126,8 +126,8 @@ class CollectionController extends AbstractController
         EntityManagerInterface $manager,
         $id
     ): Response {
-        $this->denyAccessUnlessGranted('COLLECTION_EDIT', $colletion);
-        // $this->denyAccessUnlessGranted('ROLE_PRODUCT_ADMIN');
+        // $this->denyAccessUnlessGranted('COLLECTION_EDIT', $colletion);
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $colletion = $repository->findOneBy(["id" => $id]);
         $form = $this->createForm(CollectionType::class, $colletion);
 

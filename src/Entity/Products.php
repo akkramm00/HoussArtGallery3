@@ -7,8 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
 #[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: ProductsRepository::class)]
@@ -75,7 +73,6 @@ class Products
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
-        $this->images = new ArrayCollection();
     }
 
 
@@ -235,39 +232,6 @@ class Products
     public function setUser(?User $user): static
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    // Ajoutez cette propriété à la classe Products
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: ImageProducts::class, cascade: ['persist', 'remove'])]
-    private Collection $images;
-
-
-    // Ajoutez les getters et setters pour cette propriété
-    public function getImages(): Collection
-    {
-        return $this->images;
-    }
-
-    public function addImage(ImageProducts $image): self
-    {
-        if (!$this->images->contains($image)) {
-            $this->images[] = $image;
-            $image->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeImage(ImageProducts $image): self
-    {
-        if ($this->images->removeElement($image)) {
-            // set the owning side to null (unless already changed)
-            if ($image->getProduct() === $this) {
-                $image->setProduct(null);
-            }
-        }
 
         return $this;
     }

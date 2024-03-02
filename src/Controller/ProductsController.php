@@ -3,10 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Products;
-use App\Entity\ImageProducts;
+use App\Form\ProductsType;
 use App\Repository\ProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Form\ProductsType;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -81,12 +80,6 @@ class ProductsController extends AbstractController
         ]);
     }
     /***************************************************************************************** */
-    private $imageDirectory;
-
-    public function __construct(string $imageDirectory)
-    {
-        $this->imageDirectory = $imageDirectory;
-    }
     /**
      * This controller allow us to create a new product
      *
@@ -108,16 +101,6 @@ class ProductsController extends AbstractController
             $products = $form->getData();
             $products->setUser($this->getUser());
 
-            // Gestion des images téléchargées
-            $images = $form->get('images')->getData(); // Assurez-vous que votre formulaire retourne un tableau d'instances de `Symfony\Component\HttpFoundation\File\UploadedFile`
-            foreach ($images as $image) {
-                $imageProducts = new ImageProducts();
-                $imageProducts->setImageFile($image);
-
-
-                $imageProducts->setProduct($products); // Associez l'image au produit
-                $manager->persist($imageProducts); // Persistez l'entité ImageProduct
-            }
 
             $manager->persist($products);
             $manager->flush();

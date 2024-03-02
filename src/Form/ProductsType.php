@@ -21,7 +21,7 @@ class ProductsType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control fs-4',
                     'minlength' => '2',
                     'maxlength' => '50'
                 ],
@@ -36,7 +36,7 @@ class ProductsType extends AbstractType
             ])
             ->add('price', MoneyType::class, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control fs-4',
                 ],
                 'label' => 'Prix',
                 'label_attr' => [
@@ -49,7 +49,7 @@ class ProductsType extends AbstractType
             ])
             ->add('size', textType::class,  [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control fs-4',
                     'minlength' => '2',
                     'maxlength' => '50'
                 ],
@@ -64,7 +64,7 @@ class ProductsType extends AbstractType
             ])
             ->add('property', TextareaType::class, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control fs-4',
                     'minlength' => '2',
                     'maxlength' => '2000'
                 ],
@@ -79,7 +79,7 @@ class ProductsType extends AbstractType
             ])
             ->add('artist', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control fs-4',
                     'minlength' => '2',
                     'maxlength' => '50'
                 ],
@@ -94,7 +94,7 @@ class ProductsType extends AbstractType
             ])
             ->add('category', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control fs-4',
                     'minlength' => '2',
                     'maxlength' => '200'
                 ],
@@ -107,17 +107,14 @@ class ProductsType extends AbstractType
                     new Assert\NotBlank()
                 ]
             ])
-            ->add('images', FileType::class, [
+            ->add('imageFile', FileType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control fs-4'
                 ],
                 'label' => 'Images du produit',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
                 ],
-                'mapped' => false, // Si 'images' n'est pas une propriété directe de l'entité Products
-                'required' => false,
-                'multiple' => true,
             ])
             ->add('isPublic', CheckboxType::class, [
                 'attr' => [

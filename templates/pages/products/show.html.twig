@@ -34,8 +34,8 @@
         border-radius: 50%;
         box-shadow: 0 0 1rem #000;
     }
-    .card img{
-        box-shadow: 0 0 1rem yellow;
+    .gallery .img{
+        box-shadow: 0 0 15px #fff;
     }
     .carctéristique, 
     .description li{
@@ -46,13 +46,19 @@
     hr{
     border: solid 1px #fff; 
     }
-
 </style>
 
 <body>
     <div class="container-fluid banner py-5">
         <div class="container opacity d-flex justify-content-center align-items-center">
             <div class="row section d-flex justify-content-between align-items-center">
+                
+               {% for message in app.flashes('success') %}
+               <div class="alert alert-success text-center mt-4">
+                {{ message}}
+               </div>
+               {% endfor %} 
+               
                 <div class="col-sm-12 col-md-12 col-lg-4 d-flex-column justify-content-end align-items-center">
                     <img src="https://cdn.pixabay.com/photo/2023/03/17/20/42/camera-7859402_1280.jpg" width="180px" height="180px" class="radius">
                     <p class="mx-3 fs-1 text-warning artist">{{ products.artist}}</p>
@@ -67,13 +73,13 @@
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                             </div>
                             <div class="carousel-inner">
-                            <div class="carousel-item active">
+                            <div class="carousel-item active gallery">
                                 <img src="{{ vich_uploader_asset(products, 'imageFile') }}" class="d-block img w-100 p-3" alt="...">
                             </div>
-                            <div class="carousel-item">
+                            <div class="carousel-item gallery">
                                 <img src="{{ vich_uploader_asset(products, 'imageFile') }}" class="d-block img w-100 p-3" alt="...">
                             </div>
-                            <div class="carousel-item">
+                            <div class="carousel-item gallery">
                                 <img src="{{ vich_uploader_asset(products, 'imageFile') }}" class="d-block img w-100 p-3" alt="...">
                             </div>
                             </div>
