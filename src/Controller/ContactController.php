@@ -8,11 +8,10 @@ use App\Repository\ContactRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Service\MailService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 
 class ContactController extends AbstractController
 {
@@ -27,7 +26,7 @@ class ContactController extends AbstractController
     public function index(
         Request $request,
         EntityManagerInterface $manager,
-        MailerInterface $mailer
+        MailService $mailService
     ): Response {
         $contact = new Contact();
 
@@ -47,13 +46,13 @@ class ContactController extends AbstractController
 
 
             //Email
-            $email = (new Email())
-                ->from($contact->getEmail())
-                ->to('admin@houssartgallery.com')
-                ->subject($contact->getSubject())
-                ->html($contact->getMessage());
+            $mailService->sendEmail(
+                $contact->getEmail(),
+                $contact->getSubject(),
+                'emails/contact.html.twig',
+                ['contact' => $contact]
 
-            $mailer->send($email);
+            );
 
             $this->addFlash(
                 'success',
