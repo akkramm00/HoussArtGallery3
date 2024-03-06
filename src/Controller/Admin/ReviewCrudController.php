@@ -39,8 +39,8 @@ class ReviewCrudController extends AbstractCrudController
             TextField::new('prenom'),
             TextField::new('message'),
             ImageField::new('imageFile')
-                ->setBasePath('public/images/products') // Le chemin d'accès où les images sont stockées (relatif à votre dossier public).
-                ->setUploadDir('public/images/products') // Le dossier de destination dans lequel les images téléchargées seront stockées (chemin relatif à la racine de votre projet Symfony).
+                ->setBasePath('public/images/review') // Le chemin d'accès où les images sont stockées (relatif à votre dossier public).
+                ->setUploadDir('public/images/review') // Le dossier de destination dans lequel les images téléchargées seront stockées (chemin relatif à la racine de votre projet Symfony).
                 ->setUploadedFileNamePattern('[randomhash].[extension]') // Optionnel: modèle de nommage des fichiers pour éviter les conflits.
                 ->setRequired(false),
             DateTimeField::new('createdAt')

@@ -31,6 +31,17 @@ class AppFixtures extends Fixture
     {
         // Users
         $users = [];
+
+        $admin = new User();
+        $admin->setFullName('Administrateur de HoussArtGallery')
+            ->setPseudo('null')
+            ->setEmail('admin@houssartgallery.fr')
+            ->setRoles(['ROLE_USER', 'ROLE_ADMIN'])
+            ->SetPlainPassword('password');
+
+        $users[] = $admin;
+        $manager->persist($admin);
+
         for ($i = 0; $i < 10; $i++) {
             $user = new User();
             $user->setFullName($this->faker->name())
@@ -123,17 +134,6 @@ class AppFixtures extends Fixture
         }
 
 
-        // $users = [];
-
-        // $admin = new User();
-        // $admin->setFullName('Administrateur de garageVP')
-        //     ->setPseudo('null')
-        //     ->setEmail('admin@garagevp.fr')
-        //     ->setRoles(['ROLE_USER', 'ROLE_ADMIN'])
-        //     ->SetPlainPassword('password');
-
-        // $users[] = $admin;
-        // $manager->persist($admin);
 
 
 
