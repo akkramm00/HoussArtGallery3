@@ -4,14 +4,30 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<style>
+   .banner{
+      height:1000px;
+      background:linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5)),url(images/Pinceaux.webp) center center fixed no-repeat;
+      background-size:cover;
+   }
+   .t-sh{
+      box-shadow: 0 0 20px yellow;
+      margin:0 1rem ;
+      padding:1rem;
+   }
+</style>
+<div class="container-fluid banner">
    <div class="row d-flex justify-content-center align-items-center">
       <div class="col-12 text-center mt-5">
-	    <h1>Bienvenue au sein de l'administration de HoussArtGallery</h1>
+	      <h1 class="p-1">Bienvenue au sein de l'administration de<strong class="text-warning fst-italic t-sh"> HoussArtGallery</strong></h1>
       </div>
 
-      <div class="col-sm-12 col-md-10 col-lg-8 d-flex justify-content-center align-items-center py-5">
-	    <img src="{{ asset('images/logo siteart.png') }}">
+      <div class="col-sm-12 col-md-8 col-lg-8 d-flex justify-content-center align-items-center py-5">
+	      <a href="{{ path('home.index') }}" class="text-center col-12 mt-5"><img src="{{ asset('images/logo siteart.png') }}" class="w-75 rounded-3"></a>
+      </div>
+      
+      <div class="col-sm-12 col-md-12 col-lg-8 d-flex justify-content-center align-items-center py-5">
+	      <a href="{{ path('about.index') }}"><h2 class="text-warning text-center fs-4">© 2024 HoussArtGallery.com |Designed By EL.Houss.Digital</h2></a>
       </div>
   </div>
 </div>
