@@ -105,8 +105,8 @@
                     <li class="list-group-item bg-transparent fs-3"><strong>ARTIST :</strong> {{ products.artist }}</li>
                     <li class="list-group-item bg-transparent fs-3"><strong>PRIX en EUROS:</strong> {{ products.price}}</li>
                     <li class="list-group-item bg-transparent fs-3"><strong>CATEGORIE :</strong> {{ products.category }}</li>
+                    <li class="list-group-item bg-transparent fs-3"><strong>DATE DE CREATION :</strong>{{ products.createdAt|date('d/m/Y') }}</li>
                     <li class="list-group-item bg-transparent fs-3"><strong>DESCRIPTION :</strong> {{ products.property|slice(0,600) ~ '...' }}</li>
-                    {# <li class="list-group-item list-group-item-warning">  <a href="{{ path('contact.index') }}" class="btn btn-primary">Reserver</a></li> #}
                 </ul>
             </div> 
             <div class="col-12 d-flex justify-content-center align-items-center text-center my-5">

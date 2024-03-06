@@ -55,11 +55,11 @@
 				 {{ app.user.fullName}}
 			</button>
 			<ul class="dropdown-menu Action fs-5">
-				{# <li>
+				<li>
 					{% if 'ROLE_ADMIN' in app.user.roles %}
 						<a class="dropdown-item" href="{{ path('admin') }}">ADMINISTRATION</a>
 					{% endif %}
-				</li>  #}
+				</li> 
 				<li>
 					<a class="dropdown-item" href="{{ path('user.edit', {id : app.user.id}) }}">Modifier Identity</a>
 				</li>

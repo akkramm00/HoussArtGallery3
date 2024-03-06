@@ -148,6 +148,7 @@
                     <li class="list-group-item bg-transparent fs-3"><strong>ARTIST :</strong> {{ colletion.artist }}</li>
                     <li class="list-group-item bg-transparent fs-3"><strong>PRIX en EUROS:</strong> {{ colletion.price}}</li>
                     <li class="list-group-item bg-transparent fs-3"><strong>CATEGORIE :</strong> {{ colletion.category }}</li>
+                    <li class="list-group-item bg-transparent fs-3"><strong>CATEGORIE :</strong>{{ colletion.createdAt|date('d/m/Y') }}</li>
                     <li class="list-group-item bg-transparent fs-3"><strong>DESCRIPTION :</strong> {{ colletion.description|slice(0,600) ~ '...' }}</li>
                 </ul>
             </div> 
