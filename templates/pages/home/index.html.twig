@@ -246,8 +246,7 @@
 				<div class="box text-center text-white">
 					<img src="{{ vich_uploader_asset(review, 'imageFile') }}" width="180px" height="180px">
 					<div class="content">
-						<span class="fs-3">{{ review.nom }}</span>
-						<span class="fs-3">{{ review.prenom }}</span>
+						<span class="fs-3">{{ review.fullName }}</span>
 						<p>{{ review.message|slice(0,100) ~ '...'}}</p>
 						<h3>Satisfait</h3>
 						<div class="stars text-danger fs-3">

@@ -76,6 +76,11 @@ class ReviewController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_USER');
 
         $review = new Review();
+
+        if ($this->getUser()) {
+            $review->setFullName($this->getUser()->getFullName());
+        }
+
         $form = $this->createForm(ReviewType::class, $review);
 
         $form->handleRequest($request);
@@ -90,7 +95,7 @@ class ReviewController extends AbstractController
                 'Votre avis a été enregistré avec succès !'
             );
 
-            return $this->redirectToRoute('review.index');
+            return $this->redirectToRoute('review.index.public');
         }
 
         return $this->render('pages/review/new.html.twig', [

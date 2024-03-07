@@ -18,15 +18,11 @@ class Review
     #[ORM\Column]
     private ?int $id;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(type: 'string', length: 50)]
     #[Assert\NotBlank()]
     #[Assert\Length(min: 2, max: 50)]
-    private ?string $nom;
+    private ?string $fullName = null;
 
-    #[ORM\Column(length: 255)]
-    #[Assert\NotBlank()]
-    #[Assert\Length(min: 2, max: 50)]
-    private ?string $prenom;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank()]
@@ -70,26 +66,14 @@ class Review
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getFullName(): ?string
     {
-        return $this->nom;
+        return $this->fullName;
     }
 
-    public function setNom(string $nom): static
+    public function setFullName(string $fullName): static
     {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): static
-    {
-        $this->prenom = $prenom;
+        $this->fullName = $fullName;
 
         return $this;
     }

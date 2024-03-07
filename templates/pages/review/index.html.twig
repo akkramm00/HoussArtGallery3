@@ -43,8 +43,7 @@
                     <thead class="py-5 fs-3 text-danger">
                         <tr>
                             <th>Numéro</th>
-                            <th>Nom</th>
-                            <th>Prenom</th>
+                            <th>Nom/Prénom</th>
                             <th>Message</th>
                             <th>Date de création</th>
                             <th>Edition</th>
@@ -55,8 +54,7 @@
                         {% for review in review %}
                            <tr>
                                 <th  class="d-flex justify-content-center align-items-center fs-5 text-danger">{{ review.id }}</th>
-                                <td>{{ review.nom }}</td>
-                                <td>{{ review.prenom }}</td>
+                                <td>{{ review.fullName }}</td>
                                 <td>{{ review.message|slice(0,50) ~ '...' }}</td>
                                 <td>{{ review.createdAt|date('d/m/Y') }}</td>
                                 <td>

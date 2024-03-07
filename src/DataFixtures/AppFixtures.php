@@ -124,8 +124,7 @@ class AppFixtures extends Fixture
         // Review
         for ($r = 0; $r < 10; $r++) {
             $review = new Review();
-            $review->setNom($this->faker->name())
-                ->setPrenom($this->faker->firstName())
+            $review->setFullName($this->faker->name())
                 ->setMessage($this->faker->text(255))
                 ->setRoles(['ROLE_USER'])
                 ->setIsPublic(mt_rand(0, 1) == 1 ? true : false);

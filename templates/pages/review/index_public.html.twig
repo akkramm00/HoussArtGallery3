@@ -51,8 +51,7 @@
                 <div class="box text-center">
                     <img src="{{ vich_uploader_asset(review, 'imageFile') }}" width="180px" height="180px">
                     <div class="content">
-                        <span class="fs-3">{{ review.nom }}</span>
-                        <span class="fs-3">{{ review.prenom }}</span>
+                        <span class="fs-3">{{ review.fullName }}</span>
                         <p class="fs-5">{{ review.message|slice(1, 150) ~ '...' }}</p>
                         <span class="fs-5">{{ review.createdAt|date('d/m/Y') }}</span>
                         <h3 class="fs-1 text-warning">Satisfait</h3>
