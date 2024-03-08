@@ -10,9 +10,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
-
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ProductsCrudController extends AbstractCrudController
 {
@@ -38,14 +37,17 @@ class ProductsCrudController extends AbstractCrudController
             IdField::new('id')
                 ->hideOnForm(),
             TextField::new('Name'),
-            IntegerField::new('price'),
+            TextField::new('size')
+                ->hideOnIndex(),
+            IntegerField::new('price')
+                ->hideOnIndex(),
             TextField::new('artist'),
             TextField::new('category'),
             TextEditorField::new('property'),
+            TextField::new('imageFile')
+                ->setFormType(VichImageType::class)->onlyWhenCreating(),
             ImageField::new('imageFile')
-                ->setBasePath('public/images/products') // Le chemin d'accès où les images sont stockées (relatif à votre dossier public).
-                ->setUploadDir('public/images/products') // Le dossier de destination dans lequel les images téléchargées seront stockées (chemin relatif à la racine de votre projet Symfony).
-                ->setUploadedFileNamePattern('[randomhash].[extension]') // Optionnel: modèle de nommage des fichiers pour éviter les conflits.
+                ->setBasePath('public/uploads/images/')->onlyOnIndex()
                 ->setRequired(false),
             DateTimeField::new('createdAt')
                 ->hideOnForm()

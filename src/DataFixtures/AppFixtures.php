@@ -70,7 +70,8 @@ class AppFixtures extends Fixture
                 ->setArtist($this->faker->words(2, true))
                 ->setCategory($categoryOptions[array_rand($categoryOptions)])
                 ->setIsPublic(mt_rand(0, 1) == 1 ? true : false)
-                ->setUser($users[mt_rand(0, count($users) - 1)]);
+                ->setUser($users[mt_rand(0, count($users) - 1)])
+                ->setImageName('fondCRUD.jpg');
 
             $product[] = $products;
             $manager->persist($products);
@@ -87,7 +88,8 @@ class AppFixtures extends Fixture
                 ->setPrice(mt_rand('20000', '100000'))
                 ->setIsFavorite(mt_rand(0, 1) == 1 ? true : false)
                 ->setIsPublic(mt_rand(0, 1) == 1 ? true : false)
-                ->setUser($users[mt_rand(0, count($users) - 1)]);
+                ->setUser($users[mt_rand(0, count($users) - 1)])
+                ->setImageName('fondCRUD.jpg');
 
             for ($k = 0; $k < mt_rand(5, 15); $k++) {
 
@@ -127,7 +129,8 @@ class AppFixtures extends Fixture
             $review->setFullName($this->faker->name())
                 ->setMessage($this->faker->text(255))
                 ->setRoles(['ROLE_USER'])
-                ->setIsPublic(mt_rand(0, 1) == 1 ? true : false);
+                ->setIsPublic(mt_rand(0, 1) == 1 ? true : false)
+                ->setImageName('fondCRUD.jpg');
 
             $manager->persist($review);
         }

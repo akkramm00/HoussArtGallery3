@@ -5,21 +5,16 @@ vich_uploader:
 
     mappings:
         products_images:
-            uri_prefix: /images/products
-            upload_destination: "%kernel.project_dir%/public/images/products"
+            uri_prefix: "%products_images%"
+            upload_destination: "%kernel.project_dir%/public/%products_images%"
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
         colletion_images:
-            uri_prefix: /images/colletion
-            upload_destination: "%kernel.project_dir%/public/images/colletion"
+            uri_prefix: "%colletion_images%"
+            upload_destination: "%kernel.project_dir%/public%colletion_images%"
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
         review_images:
-            uri_prefix: /images/review
-            upload_destination: "%kernel.project_dir%/public/images/review"
-            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
-
-        image_products_images:
-            uri_prefix: /images/review
-            upload_destination: "%kernel.project_dir%/public/images/image_products"
+            uri_prefix: "%review_images%"
+            upload_destination: "%kernel.project_dir%/public%review_images%"
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
