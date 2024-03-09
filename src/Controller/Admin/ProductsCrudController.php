@@ -45,7 +45,7 @@ class ProductsCrudController extends AbstractCrudController
             TextField::new('category'),
             TextEditorField::new('property'),
             TextField::new('imageFile')
-                ->setFormType(VichImageType::class)->onlyWhenCreating(),
+                ->setFormType(VichImageType::class),
             ImageField::new('imageFile')
                 ->setBasePath('public/uploads/images/')->onlyOnIndex()
                 ->setRequired(false),
