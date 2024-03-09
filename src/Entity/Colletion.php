@@ -54,6 +54,12 @@ class Colletion
     #[ORM\Column(nullable: true)]
     private ?string $imageName = null;
 
+    #[Vich\UploadableField(mapping: 'artist_images', fileNameProperty: 'artistImageName')]
+    private ?File $artistImageFile = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $artistImageName = null;
+
     #[ORM\Column(type: 'boolean')]
     private ?bool $isFavorite = null;
 
@@ -193,6 +199,41 @@ class Colletion
     {
         return $this->imageName;
     }
+
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $artistImageFile
+     */
+
+    public function setArtistImageFile(?File $artistImageFile = null): void
+    {
+        $this->artistImageFile = $artistImageFile;
+
+        if (null !== $artistImageFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getArtistImageFile(): ?File
+    {
+        return $this->artistImageFile;
+    }
+
+    public function setArtistImageName(?string $artistImageName): void
+    {
+        $this->artistImageName = $artistImageName;
+    }
+
+    public function getArtistImageName(): ?string
+    {
+        return $this->artistImageName;
+    }
+
 
     public function isIsFavorite(): ?bool
     {

@@ -111,6 +111,15 @@ class CollectionType extends AbstractType
                     'class' => 'form-label mt-4'
                 ]
             ])
+            ->add('artistImageFile', FileType::class, [
+                'attr' => [
+                    'class' => 'form-control fs-4'
+                ],
+                'label' => 'Photo de L\'artiste',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+            ])
             ->add('isFavorite', CheckboxType::class, [
                 'attr' => [
                     'class' => 'form-check-input',

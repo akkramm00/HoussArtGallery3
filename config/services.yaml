@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     products_images: /uploads/products
+    artist_images: /uploads/artists
     colletion_images: /uploads/colletion
     review_images: /uploads/review
 services:

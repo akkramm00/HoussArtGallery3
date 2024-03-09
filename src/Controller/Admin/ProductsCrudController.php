@@ -46,9 +46,10 @@ class ProductsCrudController extends AbstractCrudController
             TextEditorField::new('property'),
             TextField::new('imageFile')
                 ->setFormType(VichImageType::class),
-            ImageField::new('imageFile')
-                ->setBasePath('public/uploads/images/')->onlyOnIndex()
-                ->setRequired(false),
+            ImageField::new('file')
+                ->setBasePath('public/uploads/images/')->onlyOnIndex(),
+            ImageField::new('artistFile')
+                ->setBasePath('public/uploads/artists/')->onlyOnIndex(),
             DateTimeField::new('createdAt')
                 ->hideOnForm()
                 ->setFormTypeOption('disabled', 'disabled'),

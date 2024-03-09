@@ -44,6 +44,21 @@ class Products
     private ?string $artist = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 2, max: 100)]
+    #[Assert\NotBlank()]
+    private ?int $ageArtist = null;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 2, max: 100)]
+    #[Assert\NotBlank()]
+    private ?string $origin = null;
+
+    #[ORM\Column(length: 2000)]
+    #[Assert\Length(min: 2, max: 2000)]
+    #[Assert\NotBlank()]
+    private ?string $autobiography = null;
+
+    #[ORM\Column(length: 255)]
     #[Assert\Length(min: 2, max: 200)]
     #[Assert\NotBlank()]
     private ?string $category = null;
@@ -53,6 +68,12 @@ class Products
 
     #[ORM\Column(nullable: true)]
     private ?string $imageName = null;
+
+    #[Vich\UploadableField(mapping: 'artist_images', fileNameProperty: 'artistImageName')]
+    private ?File $artistImageFile = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $artistImageName = null;
 
     #[ORM\Column(type: 'boolean')]
     private ?bool $isPublic = false;
@@ -141,6 +162,42 @@ class Products
         return $this;
     }
 
+    public function getAgeArtist()
+    {
+        return $this->ageArtist;
+    }
+
+    public function setAgeArtist($ageArtist)
+    {
+        $this->ageArtist = $ageArtist;
+
+        return $this;
+    }
+
+    public function getOrigin()
+    {
+        return $this->origin;
+    }
+
+    public function setOrigin($origin)
+    {
+        $this->origin = $origin;
+
+        return $this;
+    }
+
+    public function getAutobiography()
+    {
+        return $this->autobiography;
+    }
+
+    public function setAutobiography($autobiography)
+    {
+        $this->autobiography = $autobiography;
+
+        return $this;
+    }
+
     public function getCategory(): ?string
     {
         return $this->category;
@@ -186,6 +243,40 @@ class Products
     public function getImageName(): ?string
     {
         return $this->imageName;
+    }
+
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $artistImageFile
+     */
+
+    public function setArtistImageFile(?File $artistImageFile = null): void
+    {
+        $this->artistImageFile = $artistImageFile;
+
+        if (null !== $artistImageFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getArtistImageFile(): ?File
+    {
+        return $this->artistImageFile;
+    }
+
+    public function setArtistImageName(?string $artistImageName): void
+    {
+        $this->artistImageName = $artistImageName;
+    }
+
+    public function getArtistImageName(): ?string
+    {
+        return $this->artistImageName;
     }
 
     public function isIsPublic(): ?bool

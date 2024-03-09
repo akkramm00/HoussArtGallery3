@@ -9,6 +9,11 @@ vich_uploader:
             upload_destination: "%kernel.project_dir%/public/%products_images%"
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
+        artist_images:
+            uri_prefix: "%artist_images%"
+            upload_destination: "%kernel.project_dir%/public/%artist_images%"
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
         colletion_images:
             uri_prefix: "%colletion_images%"
             upload_destination: "%kernel.project_dir%/public%colletion_images%"

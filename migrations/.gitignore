@@ -1,4 +1,6 @@
 /public/uploads/products/*
 /public/uploads/colletion/*
 /public/uploads/review/*
-!/public/uploads/fondCRUD.jpg
+!/public/uploads/products/fondCRUD.jpg
+!/public/uploads/colletion/fondCRUD.jpg
+!/public/uploads/review/fondCRUD.jpg

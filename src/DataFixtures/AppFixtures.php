@@ -62,17 +62,19 @@ class AppFixtures extends Fixture
         $categoryOptions = ['Abstrait', 'Figuratif', 'Calligraphy', 'Contemporain'];
 
         for ($p = 1; $p <= 50; $p++) {
-            $products = new Products();
+            $products = new Products;
             $products->setName($nameOptions[array_rand($nameOptions)])
                 ->setPrice(mt_rand('1000', '50000'))
                 ->setSize($sizeOptions[array_rand($sizeOptions)])
                 ->setProperty($this->faker->text(2000))
                 ->setArtist($this->faker->words(2, true))
+                ->setAgeArtist($this->faker->numberBetween(20, 70))
+                ->setOrigin($this->faker->country())
+                ->setAutobiography($this->faker->text(2000))
                 ->setCategory($categoryOptions[array_rand($categoryOptions)])
                 ->setIsPublic(mt_rand(0, 1) == 1 ? true : false)
                 ->setUser($users[mt_rand(0, count($users) - 1)])
                 ->setImageName('fondCRUD.jpg');
-
             $product[] = $products;
             $manager->persist($products);
         }
