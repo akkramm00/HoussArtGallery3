@@ -92,6 +92,51 @@ class ProductsType extends AbstractType
                     new Assert\NotBlank()
                 ]
             ])
+            ->add('ageArtist', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control fs-4',
+                    'minlength' => '2',
+                    'maxlength' => '50'
+                ],
+                'label' => 'Age',
+                'label_attr' => [
+                    'class' => 'form-label mt-2'
+                ],
+                'constraints' => [
+                    new Assert\Length(['min' => 2, 'max' => 100]),
+                    new Assert\NotBlank()
+                ]
+            ])
+            ->add('origin', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control fs-4',
+                    'minlength' => '2',
+                    'maxlength' => '50'
+                ],
+                'label' => 'Origine',
+                'label_attr' => [
+                    'class' => 'form-label mt-2'
+                ],
+                'constraints' => [
+                    new Assert\Length(['min' => 2, 'max' => 100]),
+                    new Assert\NotBlank()
+                ]
+            ])
+            ->add('autobiography', TextareaType::class, [
+                'attr' => [
+                    'class' => 'form-control fs-4',
+                    'minlength' => '2',
+                    'maxlength' => '2000'
+                ],
+                'label' => 'AutoBiographie',
+                'label_attr' => [
+                    'class' => 'form-label mt-2'
+                ],
+                'constraints' => [
+                    new Assert\Length(['min' => 2, 'max' => 2000]),
+                    new Assert\NotBlank()
+                ]
+            ])
             ->add('category', TextType::class, [
                 'attr' => [
                     'class' => 'form-control fs-4',

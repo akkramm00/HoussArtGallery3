@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} HoussArtGallery - {{ products.artist}} {% endblock %}
+
+{% block body %}
+    
+<style>
+    .banner{
+        height: 100%;
+        background:linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5)),url(https://cdn.pixabay.com/photo/2016/09/04/12/38/living-room-1643855_1280.jpg) center center fixed no-repeat;
+        background-size:cover;
+    }
+    .banner a{
+		background: #caa502;
+		color: white;
+		text-decoration: none;
+		padding: 20px;
+		font-size: 1.5rem;
+		font-family: 'roboto', serif;
+	}
+    .section{
+        margin: 14rem 0 0 0;
+    }
+    .banner .critéres{
+        heigth: 100%;
+        padding: 2rem;
+    }
+    .radius{
+        border-radius: 50%;
+        box-shadow: 0 0 1rem #000;
+    }
+    .gallery .img{
+        box-shadow: 0 0 15px #fff;
+    }
+    .carctéristique, 
+    .description li{
+        font-family: 'roboto';
+        background: transparent;
+        color: #fff;
+    }
+    hr{
+    border: solid 1px #fff; 
+    }
+</style>
+
+<body>
+    <div class="container-fluid banner py-5">
+        <div class="container opacity d-flex justify-content-center align-items-center">
+            <div class="row section d-flex justify-content-center align-items-center">
+                
+               {% for message in app.flashes('success') %}
+               <div class="alert alert-success text-center mt-4">
+                {{ message}}
+               </div>
+               {% endfor %} 
+               
+                <div class="col d-flex-column justify-content-center align-items-center">
+                    <div class="col-12 d-flex justify-content-center align-items-center">
+                        <img src="{{ vich_uploader_asset(products, 'artistImageFile') }}"width="300px" height="300px" class="radius">
+                    </div> 
+                    <div class="card bg-transparent  d-flex justify-content-center align-items-center">
+                        <h1 class="text-center text-white fs-1 artist mt-3">{{ products.artist }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+        <hr>
+            <div class="col-12 critéres text-start d-flex-column justify-content-center align-items-center text-white">
+                <ul class=" list-group  description list-group-flush fs-5">
+                    <h1 class="fs-1 carctéristique text-warning">L'IDENTITE DE L'ARTISTE</h1>
+                    <li class="list-group-item bg-transparent fs-3"><strong>NOM :</strong> {{ products.artist }}</li>
+                    <li class="list-group-item bg-transparent fs-3"><strong>ORIGINE :</strong> {{ products.origin }}</li>
+                    <li class="list-group-item bg-transparent fs-3"><strong>AGE :</strong> {{ products.ageArtist }} ans</li>
+                    <li class="list-group-item bg-transparent fs-3"><strong>SPECIALITE :</strong> {{ products.category }}</li>
+                    <li class="list-group-item bg-transparent fs-3"><strong>AUTOBIOGRAPHIE :</strong> {{ products.autobiography }}</li>
+                </ul>
+            </div> 
+            <div class="col-12 d-flex justify-content-center align-items-center text-center my-5">
+				<a href=" {{ path('products.show', { id: products.id }) }}">RETOUR A L'ARTICLE</a>
+			</div>
+        </div>
+
+    </div>
+</body>
+
+{% endblock %}

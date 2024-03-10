@@ -76,9 +76,32 @@
                 <div class="form-error">
                     {{ form_errors(form.artist)}}
                 </div>
-                 </div>
-        
+                </div>
 
+                <div class="form-group text-white fs-4">    
+                {{ form_label(form.ageArtist) }}
+                {{ form_widget(form.ageArtist) }}
+                <div class="form-error">
+                    {{ form_errors(form.ageArtist)}}
+                </div>
+                </div>
+
+                <div class="form-group text-white fs-4">    
+                {{ form_label(form.origin) }}
+                {{ form_widget(form.origin) }}
+                <div class="form-error">
+                    {{ form_errors(form.origin)}}
+                </div>
+                </div>
+
+                <div class="form-group text-white fs-4">    
+                {{ form_label(form.autobiography) }}
+                {{ form_widget(form.autobiography) }}
+                <div class="form-error">
+                    {{ form_errors(form.autobiography)}}
+                </div>
+                </div>
+        
                 <div class="form-group text-white fs-4">    
                 {{ form_label(form.category) }}
                 {{ form_widget(form.category) }}

@@ -10,16 +10,14 @@
 		<a href="{{ path('review.index.public') }}">REVIEWS</a>
 		<a href="{{ path('contact.index') }}">NOUS CONTACTER</a>
 	</nav>
-
-	{% if app.user %}
+	
+	<div class="d-flex justify-content-around align-items-center">
+		{% if app.user %}
 		<div class="dropdown mx-4">
 			<button class="btn dropdown-toggle fs-5 m-0" type="button" data-bs-toggle="dropdown" aria-expanded="true">
 				Action
 			</button>
 			<ul class="dropdown-menu Action fs-5">
-				{# <li>
-					<a class="dropdown-item" href="{{ path('admin') }}">Dashboard</a>
-				</li> #}
 				<li>
 					<a class="dropdown-item" href="{{ path('products') }}">Mes Produits !</a>
 				</li>
@@ -46,12 +44,11 @@
 				{% endif %}
 			</ul>
 		</div>
-	{% endif %}
+		{% endif %}
 
-
-	{% if app.user %}
+		{% if app.user %}
 		<div class="dropdown">
-			<button class="btn dropdown-toggle8 fs-5" type="button" data-bs-toggle="dropdown" aria-expanded="true">
+			<button class="btn dropdown-toggle8 fs-5 m-0" type="button" data-bs-toggle="dropdown" aria-expanded="true">
 				 {{ app.user.fullName}}
 			</button>
 			<ul class="dropdown-menu Action fs-5">
@@ -78,4 +75,5 @@
 			
 		</div>
 	{% endif %}
+</div>
 </header>

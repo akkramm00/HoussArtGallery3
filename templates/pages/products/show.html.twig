@@ -60,7 +60,7 @@
                {% endfor %} 
                
                 <div class="col-sm-12 col-md-12 col-lg-4 d-flex-column justify-content-end align-items-center">
-                    <img src="{{ vich_uploader_asset(products, 'artistImageFile') }}" width="180px" height="180px" class="radius">
+                    <a href="{{ path('products.artist',  { id: products.id }) }}" class="bg-transparent"><img src="{{ vich_uploader_asset(products, 'artistImageFile') }}" width="180px" height="180px" class="radius"></a>
                     <p class="mx-3 fs-1 text-warning artist">{{ products.artist}}</p>
                 </div> 
                 <div class="col-sm-12 col-md-12 col-lg-8">
