@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\ImageProducts;
+use App\Form\ImageProductsType;
 use App\Repository\ImageProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -38,7 +39,7 @@ class ImageProductsController extends AbstractController
     ): Response {
         $this->denyAccessUnlessGranted('ROLE_USER');
         $image_products = new ImageProducts();
-        $form = $this->createForm(ImageProducts::class, $image_products);
+        $form = $this->createForm(ImageProductsType::class, $image_products);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
