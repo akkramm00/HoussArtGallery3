@@ -16,19 +16,19 @@ class ImageProductsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('imageName', FileType::class, [
-                'attr' => [
-                    'class' => 'form-control',
+            // ->add('imageName', FileType::class, [
+            //     'attr' => [
+            //         'class' => 'form-control',
 
-                ],
-                'label' => 'Nom',
-                'label_attr' => [
-                    'class' => 'form-label mt-2'
-                ],
-                'mapped' => false, // Si 'images' n'est pas une propriété directe de l'entité Products
-                'required' => false,
-                'multiple' => true,
-            ])
+            //     ],
+            //     'label' => 'Nom',
+            //     'label_attr' => [
+            //         'class' => 'form-label mt-2'
+            //     ],
+            //     'mapped' => false, // Si 'images' n'est pas une propriété directe de l'entité Products
+            //     'required' => false,
+            //     'multiple' => true,
+            // ])
             ->add('product', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',

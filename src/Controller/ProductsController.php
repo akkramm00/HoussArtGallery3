@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Contracts\Cache\ItemInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 class ProductsController extends AbstractController
