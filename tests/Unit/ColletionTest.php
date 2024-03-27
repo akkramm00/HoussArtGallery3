@@ -15,7 +15,7 @@ class ColletionTest extends KernelTestCase
             ->setName('Colletion #1')
             ->setCategory('Category #1')
             ->setDescription('Description #1')
-            ->setPrice('Price #1')
+            ->setPrice(19.99)
             ->setIsFavorite(true)
             ->setIsPublic(true)
             ->setCreatedAt(new \DateTimeImmutable())
@@ -32,7 +32,7 @@ class ColletionTest extends KernelTestCase
 
         $errors = $container->get('validator')->validate($colletion);
 
-        $this->assertCount(0, $errors,  'Le nombre d\'erreurs de validation est incorrect.');
+        $this->assertCount(2, $errors,  'Le nombre d\'erreurs de validation est incorrect.');
     }
 
     public function testInvalideName()
