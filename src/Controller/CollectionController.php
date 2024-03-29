@@ -141,7 +141,7 @@ class CollectionController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Votre collection a été modifié avec succès !'
+                'Votre collection a été modifiée avec succès !'
             );
 
             return $this->redirectToRoute('collection.index');
