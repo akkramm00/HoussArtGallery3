@@ -69,6 +69,10 @@
                     </div>
 
                     <div class="form-group text-white">
+                        {{ form_widget(form._token, {'attr': {'class': 'btn btn-warning mt-4'}}) }}
+                    </div>
+
+                    <div class="form-group text-white">
                         {{ form_widget(form.submit, {'attr': {'class': 'btn btn-warning mt-4'}}) }}
                     </div>
                     {{ form_end(form) }}
