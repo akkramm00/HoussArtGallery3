@@ -103,9 +103,9 @@
                     <h1 class="fs-1 carctéristique text-warning">CARACTERISTIQUES</h1>
                     <li class="list-group-item bg-transparent fs-3"><strong>NOM :</strong> {{ products.name }}</li>
                     <li class="list-group-item bg-transparent fs-3"><strong>ARTIST :</strong> {{ products.artist }}</li>
-                    <li class="list-group-item bg-transparent fs-3"><strong>PRIX en EUROS:</strong> {{ products.price}}</li>
+                    <li class="list-group-item bg-transparent fs-3"><strong>PRIX :</strong> {{ products.price}} €</li>
                     <li class="list-group-item bg-transparent fs-3"><strong>CATEGORIE :</strong> {{ products.category }}</li>
-                    <li class="list-group-item bg-transparent fs-3"><strong>DATE DE CREATION :</strong>{{ products.createdAt|date('d/m/Y') }}</li>
+                    <li class="list-group-item bg-transparent fs-3"><strong>DATE DE CREATION : </strong>{{ products.createdAt|date('d/m/Y') }}</li>
                     <li class="list-group-item bg-transparent fs-3"><strong>DESCRIPTION :</strong> {{ products.property|slice(0,600) ~ '...' }}</li>
                 </ul>
             </div> 
