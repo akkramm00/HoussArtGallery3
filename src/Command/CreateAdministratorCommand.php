@@ -40,7 +40,7 @@ class CreateAdministratorCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $helper = $this->getHelperSet()->get('question');
+        $helper = $this->getHelper('question');
         $io = new SymfonyStyle($input, $output);
 
         $fullName = $input->getArgument('full_name');
@@ -58,7 +58,6 @@ class CreateAdministratorCommand extends Command
         $plainPassword = $input->getArgument('password');
         if (!$plainPassword) {
             $question = new Question('Quel est le mot de passe de  ' . $fullName . ' : ');
-            $question->setHidden(true);
             $plainPassword = $helper->ask($input, $output, $question);
         }
 
