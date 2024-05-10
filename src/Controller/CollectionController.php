@@ -232,6 +232,7 @@ class CollectionController extends AbstractController
             $mark->setUser($this->getUser())
                 ->setColletion($colletion);
 
+            // Vérifier si l'utilisateur a déjà noter la collection !
             $existingMark = $markRepository->findOneBy([
                 'user' => $this->getUser(),
                 'colletion' => $colletion
