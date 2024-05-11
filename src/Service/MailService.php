@@ -21,7 +21,7 @@ class MailService
     public function sendEmail(
         string $from,
         string $subject,
-        string $htmtTemplate,
+        string $htmlTemplate,
         array $context,
         string $to = 'admin@houssartgallery.com'
     ): void {
@@ -29,7 +29,7 @@ class MailService
             ->from($from)
             ->to($to)
             ->subject($subject)
-            ->htmlTemplate($htmtTemplate)
+            ->htmlTemplate($htmlTemplate)
             ->context($context);
 
         $this->mailer->send($email);
