@@ -8,6 +8,7 @@ parameters:
     artist_images: /uploads/artists
     colletion_images: /uploads/colletion
     review_images: /uploads/review
+    post_images: /uploads/post
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -38,6 +39,9 @@ services:
         public: true
 
     App\Entity\Review:
+        public: true
+
+    App\Entity\Post:
         public: true
 
     knp_paginator:
