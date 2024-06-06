@@ -6,10 +6,12 @@ use Cocur\Slugify\Slugify;
 use App\Repository\PostRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[UniqueEntity('slug', message: 'Ce slug existe déjà.')]
 class Post
 {
     const STATES = ['STATE_DRAFT', 'STATE_PUBLISHED'];
