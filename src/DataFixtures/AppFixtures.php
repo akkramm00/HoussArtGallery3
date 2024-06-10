@@ -3,11 +3,13 @@
 namespace App\DataFixtures;
 
 use App\Entity\Mark;
+use App\Entity\Post;
 use App\Entity\User;
 use App\Entity\Products;
 use App\Entity\Colletion;
 use App\Entity\Contact;
 use App\Entity\Review;
+use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -135,6 +137,18 @@ class AppFixtures extends Fixture
                 ->setImageName('fondCRUD.jpg');
 
             $manager->persist($review);
+        }
+
+        //Post
+        for ($a = 0; $a < 50; $a++) {
+            $post = new Post();
+            $post->setTitle($this->faker->words(4, true))
+                ->setContent($this->faker->realText(1800))
+                ->setState(mt_rand(0, 2) === 1 ? Post::STATES[0] : Post::STATES[1])
+                ->setImageName('fondCRUD.jpg');
+
+
+            $manager->persist($post);
         }
 
 

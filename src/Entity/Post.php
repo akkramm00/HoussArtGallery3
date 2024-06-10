@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
 use App\Repository\PostRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use symfony\Component\Validator\Constraints as Assert;
@@ -32,7 +31,7 @@ class Post
     #[Assert\NotBlank()]
     private ?string $slug = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: 'text')]
     #[Assert\NotBlank()]
     private ?string $content = null;
 
@@ -45,23 +44,32 @@ class Post
     #[ORM\Column(type: 'string', nullable: true)]
     private ?string $imageName = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\NotNull()]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\NotNull()]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    public function __constuct()
+    public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
     }
 
+    #[ORM\PrePersist]
     public function prePersist()
     {
         $this->slug = (new Slugify())->slugify($this->title);
+
+        if ($this->createdAt === null) {
+            $this->createdAt = new \DateTimeImmutable();
+        }
+
+        if ($this->updatedAt === null) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
     }
 
     #[ORM\PreUpdate]
