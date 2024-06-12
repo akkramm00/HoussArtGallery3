@@ -1,0 +1,478 @@
+@import url('https://fonts.googleapis.com/css2?family=Besley:ital,wght@1,400;1,500&family=Lato&family=Merriweather&family=Redressed&family=Roboto&family=Rubik+80s+Fade&display=swap&family=Ruthie&display=swap&family=Abril+Fatface');
+
+:root {
+    --main: #c7a703;
+    --border: 0.2rem solid rgba(0, 0, 0, 0.5);
+    --box_shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.8);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'roboto';
+    text-decoration: none;
+    border: none;
+    outline: none;
+    transition: linear 0.2s;
+}
+
+*::selection {
+    background: var(--main);
+    color: #000;
+}
+
+html {
+    font-size: 65.2%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+}
+
+.btn {
+    background: var(--main);
+    padding: 0.8rem 3rem;
+    display: inline-block;
+    margin-top: 1rem;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.7rem;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 0.5rem;
+
+}
+
+.heading {
+    padding-bottom: 2rem;
+    font-size: 5rem;
+    text-align: center;
+    font-family: 'Abril Fatface', serif;
+    color: #c7a703;
+}
+
+/*  Header/Navbar Start  */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 3rem 2%;
+    background: #fff;
+    box-shadow: var(--box_shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+header .navbar a {
+    font-size: 1.4rem;
+    font-family: roboto;
+    color: #373535;
+    margin: 0 1rem;
+    text-decoration: none;
+}
+
+header .navbar a:hover {
+    color: var(--main);
+    padding-bottom: 0.8rem;
+    border-bottom: 0.3rem solid var(--main);
+    transition: 0.3s;
+}
+
+.dropdown .Action {
+    width: 10rem;
+    font-size: 1.5rem;
+    border: none;
+    background: transparent;
+}
+
+.dropdown .Action li {
+    width: 15rem;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 1rem;
+}
+
+.dropdown .Action li a {
+    color: #fff;
+    padding: 1.1rem;
+    margin-bottom: 0.5rem;
+
+}
+
+.dropdown .Action li a:hover {
+    background: var(--main);
+    color: #fff;
+    border-radius: 1rem;
+}
+
+#LoginBtn .btn {
+    margin-top: 0;
+}
+
+#LoginBtn .btn:hover {
+    color: var(--main);
+}
+
+#LoginBtn i {
+    color: #fff;
+    font-size: 2rem;
+    margin: 0 1rem
+}
+
+#MenuBtn {
+    font-size: 2.5rem;
+    color: var(--main);
+    display: none;
+}
+
+/*  Header/Navbar End  */
+
+/* Login form Container */
+.loginFormContainer {
+    position: fixed;
+    top: -105%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 1000;
+}
+
+.loginFormContainer.active {
+    top: 0;
+}
+
+.loginFormContainer form {
+    margin: 2rem;
+    border: var(--border);
+    box-shadow: var(--box_shadow);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    text-align: center;
+    width: 40rem;
+}
+
+.loginFormContainer form h3 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    padding-bottom: 1rem;
+}
+
+.loginFormContainer form .box {
+    font-size: 1.6rem;
+    width: 100%;
+    margin: 0.7rem 0;
+    border: var(--border);
+    border-radius: 0.5rem;
+    text-transform: none;
+    padding: 1rem 1.2rem;
+}
+
+.loginFormContainer form p {
+    font-size: 1.5rem;
+    color: var(--main);
+    padding: 1rem 0;
+}
+
+.loginFormContainer form p a {
+    color: var(--main);
+    text-decoration: underline;
+}
+
+#CloseLoginForm {
+    position: absolute;
+    top: 1.5rem;
+    right: 2.5rem;
+    font-size: 5rem;
+    cursor: pointer;
+}
+
+.loginFormContainer form .buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    transition: 0.8s;
+
+}
+
+.loginFormContainer form .btn {
+    width: 100%;
+    display: block;
+    margin: 0.5rem 0;
+}
+
+.loginFormContainer form .btn a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Login form Container */
+
+
+
+/* home Section Start */
+.home {
+    padding-top: 3rem;
+    overflow-x: hidden;
+    text-align: center;
+}
+
+.home h3 {
+    font-size: 4vw;
+    text-transform: uppercase;
+    /* margin:2rem 0 2rem; */
+    padding-top: 1rem;
+    text-shadow: 1rem 1rem 1rem var(--main);
+}
+
+.home h3 span {
+    color: var(--main);
+    text-shadow: 1rem 1rem 1rem black;
+}
+
+.home img {
+    width: 100%;
+    height: 60%;
+    background-color: transparent;
+}
+
+/* home Section End */
+
+/* iconsContainer Section Start*/
+.iconsContainer {
+    margin-bottom: 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 1.5rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.iconsContainer .icons {
+    background: #fff;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--box_shadow);
+    border-radius: 0.5rem;
+    gap: 1.5rem;
+    padding: 2rem;
+    cursor: pointer;
+}
+
+.iconsContainer .icons i {
+    background: #ccc;
+    height: 5rem;
+    width: 5rem;
+    line-height: 5rem;
+    font-size: 2.5rem;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.iconsContainer .icons h3 {
+    font-size: 2.5rem;
+    color: var(--main);
+}
+
+.iconsContainer .icons p {
+    color: var(--main);
+    font-size: 1.5rem;
+}
+
+.iconsContainer .icons:hover {
+    background: #caa502;
+
+    h3,
+    p,
+    i {
+        color: white;
+    }
+}
+
+/* iconsContainer Section End*/
+
+/* Section Footer Start */
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background: var(--main);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 -1rem 1rem rgb(35, 34, 34);
+
+}
+
+.box-ch {
+    box-shadow: 0 0 .2rem rgb(19, 18, 18);
+    border: solid 1px transparent;
+}
+
+.footerA {
+    width: 100%;
+    height: 15rem;
+    background: var(--main);
+}
+
+.footerA a {
+    color: #fff;
+    font-size: 1.5rem;
+    padding: 10px;
+    text-decoration: none;
+}
+
+footer a i {
+    padding: 1rem;
+    font-size: 2rem;
+}
+
+footer a:hover {
+    color: yellow;
+}
+
+.footerL .logo {
+    color: #000;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    text-shadow: 1rem 1rem 1rem var(--main);
+}
+
+.footerL .logo span {
+    color: rgb(190, 190, 239);
+    font-size: 8rem;
+    text-shadow: 20px 20px 20px rgb(4, 4, 54);
+    position: relative;
+    transition: transform 0.5s ease-in-out;
+}
+
+.confid .termes a,
+.copyR a {
+    font-family: roboto;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.confid a:hover {
+    border-bottom: solid 2px white;
+}
+
+/* Section Footer End */
+
+/* Media query */
+@media (max-width: 991px) {
+    html {
+        font-size: 55%;
+    }
+
+    header {
+        padding: 2rem;
+    }
+
+    section {
+        padding: 2rem;
+    }
+
+    .fa-times {
+        transform: rotate(360deg);
+    }
+
+    header .navbar {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        top: 99%;
+        left: 0;
+        right: 0;
+        background: transparent;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0)
+    }
+
+    header .navbar.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    #MenuBtn {
+        display: initial;
+    }
+
+    header .navbar a {
+        color: #fff;
+        font-size: 1.rem;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 1rem;
+        width: 70%;
+        border-radius: 10px;
+        margin: 3px 40% 3px 0;
+    }
+
+}
+
+@media (max-width:768px) {
+    header .navbar a {
+        font-size: 1.5rem;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 1rem;
+        width: 100%;
+        border-radius: 10px;
+        margin-left: 3px 40% 3px 0;
+    }
+
+
+    .contact .row {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .contact .utilities .location {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-bottom: 0;
+
+    }
+
+    .footerA {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: roboto;
+    }
+
+    footer .relative {
+        position: relative;
+        top: 100px;
+        right: 50px;
+        display: block;
+    }
+
+    footer .relative i {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 450px) {
+    html {
+        font-size: 50%;
+    }
+
+}
