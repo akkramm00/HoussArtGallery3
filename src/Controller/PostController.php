@@ -9,12 +9,18 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PostController extends AbstractController
 {
+    /**
+     * This method allow us to publish all posts with STATE_PUBLISHED
+     *
+     * @param PostRepository $postRepository
+     * @return Response
+     */
     #[Route('/post', name: 'post.index', methods: ['GET'])]
     public function index(
         PostRepository $postRepository
     ): Response {
 
-        $posts = $postRepository->findAll();
+        $posts = $postRepository->findPublished();
 
 
         return $this->render('/pages/post/index.html.twig', [
