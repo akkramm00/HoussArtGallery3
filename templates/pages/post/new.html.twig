@@ -1,0 +1,94 @@
+{% extends "base.html.twig" %}
+
+{% block title %}HoussArtGallery - Nouveau Article{% endblock %}
+
+{% block body %}
+
+<style>
+    .banner{
+        height:950px;
+        background:linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5)),url(https://cdn.pixabay.com/photo/2016/09/04/12/38/living-room-1643855_1280.jpg) center center fixed no-repeat;
+        background-size:cover;
+    }
+    .block{
+        margin: 10rem 0;
+    }
+    .bg{
+        background: #caa502;
+    }
+</style>
+
+<body>
+<div class="container-fluid banner">
+    <div class="container">
+        <div class="row block d-flex justify-content-center align-items-center">
+            <div class="col-sm-12 col-md-10">
+                <div class="row my-5">
+               <h1 class="mt-4 text-center text-white heading mt-5">Ajouter Un Article</h1>
+
+               {# read and display just one flash message type #}
+               {% for message in app.flashes('success') %}
+               <div class="alert alert-success mt-4">
+                {{ message}}
+               </div>
+               {% endfor %}
+
+                </div>
+                <div class="row bg p-5">
+
+                {{ form_start(form) }}
+
+                <div class="form-group fs-4 mt-4">       
+                {{ form_label(form.title) }}
+                {{ form_widget(form.title) }}
+                <div class="form-error">
+                    {{ form_errors(form.title)}}
+                </div>
+                </div>
+
+                <div class="form-group fs-4">    
+                {{ form_label(form.slug) }}
+                {{ form_widget(form.slug) }}
+                <div class="form-error">
+                    {{ form_errors(form.slug)}}
+                </div>
+                </div>
+
+                <div class="form-group fs-4">    
+                {{ form_label(form.content) }}
+                {{ form_widget(form.content) }}
+                <div class="form-error">
+                    {{ form_errors(form.content)}}
+                </div>
+                </div>
+
+                <div class="form-group fs-4">    
+                {{ form_label(form.imageFile) }}
+                {{ form_widget(form.imageFile) }}
+                <div class="form-error">
+                    {{ form_errors(form.imageFile)}}
+                </div>
+                </div>
+
+                <div class="form-group fs-4 mt-4">    
+                {{ form_label(form.state) }}
+                {{ form_widget(form.state) }}
+                <div class="form-error">
+                    {{ form_errors(form.state)}}
+                </div>
+                </div>
+
+                <div class="form-group fs-4 my-4">    
+                {{ form_row(form.submit) }}
+                </div>
+                {{ form_end(form)}}
+                </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+{% endblock %}

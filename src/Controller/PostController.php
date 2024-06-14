@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
+use App\Form\PostType;
 use App\Repository\PostRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,14 +29,37 @@ class PostController extends AbstractController
         Request $request
     ): Response {
         $this->denyAccessUnlessGranted('ROLE_USER');
-        $posts = $paginator->paginate(
+        $post = $paginator->paginate(
             $repository->findPublished(),
             $request->query->getInt('page', 1),
             10
         );
 
         return $this->render('/pages/post/index.html.twig', [
-            'posts' => $posts
+            'post' => $post
+        ]);
+    }
+    /************************************************************* */
+    #[Route('/post/nouveau', 'post.new', methods: ['GET', 'POST'])]
+    public function new(
+        Request $request,
+        EntityManagerInterface $manager
+    ): Response {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        $post = new Post();
+        $form = $this->createForm(PostType::class, $post);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $posts = $form->getData();
+
+            $manager->persist($posts);
+            $manager->flush();
+        }
+
+
+        return $this->render('pages/post/new.html.twig', [
+            'form' => $form->createView()
         ]);
     }
     /************************************************************* */
