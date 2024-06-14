@@ -8,6 +8,7 @@
 		<a href="{{ path('collection.index.public') }}">NOS COLLECTIONS</a>
 		<a href="{{ path('about.index') }}">A PROPOS</a>
 		<a href="{{ path('review.index.public') }}">REVIEWS</a>
+		<a href="{{ path('post.index.public') }}">ARTICLES</a>
 		<a href="{{ path('contact.index') }}">NOUS CONTACTER</a>
 	</nav>
 	
@@ -40,6 +41,9 @@
 				</li>
 				<li>
 					<a class="dropdown-item" href="{{ path('review.index') }}">Avis de Contacts</a>
+				</li>
+				<li>
+					<a class="dropdown-item" href="{{ path('post.index') }}">Les Articles</a>
 				</li>
 				{% endif %}
 			</ul>

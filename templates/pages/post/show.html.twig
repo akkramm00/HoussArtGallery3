@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HoussArtGallery - {{ posts.title }}{% endblock %}
+
+{% block body %}
+    
+<style>
+    .banner{
+        height: 800px;
+        background:linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5)),url(https://cdn.pixabay.com/photo/2016/09/04/12/38/living-room-1643855_1280.jpg) center center fixed no-repeat;
+        background-size:cover;
+    }
+    .heading{
+        margin: 15rem 0 0;
+    }
+    .banner .height{
+        height: 20rem;
+    }
+</style>
+
+<!-- Review section Start -->
+<body>
+<div class="container-fluid banner">
+    <div class="container ">
+        <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 height">
+        </div>
+        <div class="col-12 d-flex justify-content-center align-items-center my-5">
+            <div class="card mb-3">
+                <img src="{{ vich_uploader_asset(posts, 'imageFile') }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h1 class="card-title">{{ posts.title }}</h1>
+                    <h3 class="card-title fw-bold">{{ posts.slug }}</h3>
+                    <p class="card-text fs-3">{{ posts.content }}</p>
+                    <p class="card-text fs-4"><small class="text-muted">{{ posts.createdAt|date('d/m/Y') }}</small></p>
+                    <a href="{{ path('post.index.public')}}" class="btn btn-warning">Retour aux Articles</a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+{% endblock %}
