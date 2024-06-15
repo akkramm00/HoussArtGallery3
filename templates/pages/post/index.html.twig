@@ -74,8 +74,7 @@
                             <td>{{ post.content|slice(1, 40) ~ '...'  }}</td>
                             <td>{{ post.createdAt|date('d/m/Y') }}</td>
                             <td>
-                               {# <a href="{{ path('products.edit', { id: products.id }) }}" class="text-warning">Modifier</a> #}
-                            </td>
+                               <a href="{{ path('post.edit', { id: post.id }) }}" class="text-warning">Modifier</a>                          </td>
                             <td>
                                {# <a href="{{ path('products.delete', { id: products.id }) }}" class="text-danger">supprimer</a> #}
                             </td>

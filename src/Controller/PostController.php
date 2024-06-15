@@ -51,14 +51,53 @@ class PostController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $posts = $form->getData();
+            $post = $form->getData();
 
-            $manager->persist($posts);
+            $manager->persist($post);
             $manager->flush();
+            $this->addFlash(
+                'success',
+                'Votre Article a été créé avec succès !'
+            );
+
+            return $this->redirectToRoute('post.index');
         }
 
 
         return $this->render('pages/post/new.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+    /************************************************************* */
+    #[Route('/post/edit/{id}', 'post.edit', methods: ['GET', 'POST'])]
+    public function edit(
+        Post $post,
+        PostRepository $repository,
+        Request $request,
+        EntityManagerInterface $manager,
+        $id
+    ): Response {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $post = $repository->findOneBy(["id" => $id]);
+        $form = $this->createForm(PostType::class, $post);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $post = $form->getData();
+
+            $manager->persist($post);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'L\'article a été modifié avec succès !'
+            );
+
+            return $this->redirectToRoute('post.index');
+        }
+
+
+        return $this->render('pages/post/edit.html.twig', [
             'form' => $form->createView()
         ]);
     }
