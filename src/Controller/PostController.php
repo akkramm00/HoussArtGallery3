@@ -102,6 +102,35 @@ class PostController extends AbstractController
         ]);
     }
     /************************************************************* */
+    #[Route('/post/suppression/{id}', 'post.delete', methods: ['GET'])]
+    public function delete(
+        EntityManagerInterface $manager,
+        PostRepository $repository,
+        Post $post,
+        $id
+    ): Response {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $post = $repository->findOneBy(["id" => $id]);
+        if (!$post) {
+            $this->addFlash(
+
+                "warning",
+                "L'article en question n'a pas été trouvé !"
+            );
+
+            return $this->redirectToRoute('post.index');
+        }
+        $manager->remove($post);
+        $manager->flush();
+
+        $this->addFlash(
+            "success",
+            "L'article a été suprimé avec succès !"
+        );
+
+        return $this->redirectToRoute('post.index');
+    }
+    /************************************************************* */
     #[Route('/post/publique', 'post.index.public', methods: ['GET'])]
     public function indexPublic(
         PostRepository $repository,

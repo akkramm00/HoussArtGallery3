@@ -47,7 +47,7 @@
                {% endfor %}
             <div class="col-10 count mt-4 text-white">
             <button class="btn-warning px-3 py-3 my-3  fs-3">
-                {# <a class="text-white text-decoration-none" href="{{ path('products.new') }}">Créer un produit</a> #}
+                <a class="text-white text-decoration-none" href="{{ path('post.new') }}">Créer un article</a>
             </button>
                 <h2 class="fs-4 py-4">Il y'a {{ post.getTotalItemCount}} articles au total.</h2>
             </div>
@@ -76,7 +76,7 @@
                             <td>
                                <a href="{{ path('post.edit', { id: post.id }) }}" class="text-warning">Modifier</a>                          </td>
                             <td>
-                               {# <a href="{{ path('products.delete', { id: products.id }) }}" class="text-danger">supprimer</a> #}
+                               <a href="{{ path('post.delete', { id: post.id }) }}" class="text-danger">supprimer</a>
                             </td>
                         </tr>
                         {% endfor %}
