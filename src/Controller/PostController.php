@@ -40,6 +40,13 @@ class PostController extends AbstractController
         ]);
     }
     /************************************************************* */
+    /**
+     * This method allow us to create a new post
+     *
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
     #[Route('/post/nouveau', 'post.new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
@@ -69,6 +76,16 @@ class PostController extends AbstractController
         ]);
     }
     /************************************************************* */
+    /**
+     * Thsi method allow us to edit the posts
+     *
+     * @param Post $post
+     * @param PostRepository $repository
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @param [type] $id
+     * @return Response
+     */
     #[Route('/post/edit/{id}', 'post.edit', methods: ['GET', 'POST'])]
     public function edit(
         Post $post,
@@ -102,6 +119,15 @@ class PostController extends AbstractController
         ]);
     }
     /************************************************************* */
+    /**
+     * This method allow us to delete the posts
+     *
+     * @param EntityManagerInterface $manager
+     * @param PostRepository $repository
+     * @param Post $post
+     * @param [type] $id
+     * @return Response
+     */
     #[Route('/post/suppression/{id}', 'post.delete', methods: ['GET'])]
     public function delete(
         EntityManagerInterface $manager,
@@ -131,6 +157,14 @@ class PostController extends AbstractController
         return $this->redirectToRoute('post.index');
     }
     /************************************************************* */
+    /**
+     * Thsi method allow us to display all public posts
+     *
+     * @param PostRepository $repository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/post/publique', 'post.index.public', methods: ['GET'])]
     public function indexPublic(
         PostRepository $repository,
@@ -155,6 +189,13 @@ class PostController extends AbstractController
         ]);
     }
     /************************************************************* */
+    /**
+     * This method allow us to show the every post by his ID
+     *
+     * @param PostRepository $repository
+     * @param [type] $id
+     * @return Response
+     */
     #[Route('/post/show/{id}', 'post.show', methods: ['GET'])]
     public function show(
         PostRepository $repository,
