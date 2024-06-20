@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}HoussArtGallery - {{ posts.title }}{% endblock %}
+{% block title %}HoussArtGallery - {{ post.title }}{% endblock %}
 
 {% block body %}
     
@@ -27,12 +27,13 @@
         </div>
         <div class="col-10 d-flex justify-content-center align-items-center my-5">
             <div class="card mb-3">
-                <img src="{{ vich_uploader_asset(posts, 'imageFile') }}" class="card-img-top" alt="...">
+                <img src="{{ vich_uploader_asset(post, 'imageFile') }}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h1 class="card-title">{{ posts.title }}</h1>
-                    <h3 class="card-title fw-bold">{{ posts.slug }}</h3>
-                    <p class="card-text fs-3">{{ posts.content }}</p>
-                    <p class="card-text fs-4"><small class="text-muted">{{ posts.createdAt|date('d/m/Y') }}</small></p>
+                    <h1 class="card-text fs-4"><small class="text-muted">Publié Le {{ post.createdAt|date('d/m/Y') }}</small></h1>
+                    <h1 class="card-title">{{ post.title }}</h1>
+                    <h3 class="card-title fw-bold">{{ post.slug }}</h3>
+                    <p class="card-text fs-3">{{ post.content }}</p>
+                    <p class="card-text fs-4"><small class="text-info">Dérnière Mise à jour {{ post.updatedAt|date('d/m/Y') }}</small></p>
                     <a href="{{ path('post.index.public')}}" class="btn btn-warning">Retour aux Articles</a>
                 </div>
             </div>

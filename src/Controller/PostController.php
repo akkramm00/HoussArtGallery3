@@ -196,15 +196,16 @@ class PostController extends AbstractController
      * @param [type] $id
      * @return Response
      */
-    #[Route('/post/show/{id}', 'post.show', methods: ['GET'])]
+    #[Route('/post/{slug}', 'post.show', methods: ['GET'])]
     public function show(
+        Post $post,
         PostRepository $repository,
-        $id
+        $slug
     ): Response {
         $this->denyAccessUnlessGranted('ROLE_USER');
-        $posts = $repository->findOneBy(["id" => $id]);
+        $post = $repository->findOneBy(["slug" => $slug]);
 
-        if (!$posts) {
+        if (!$post) {
             // L article n'existe pas, renvoyez une réponse d'erreur
             $this->addflash(
                 'warning',
@@ -215,7 +216,7 @@ class PostController extends AbstractController
 
 
         return $this->render('pages/post/show.html.twig', [
-            'posts' => $posts,
+            'post' => $post,
         ]);
     }
 }
