@@ -1,0 +1,8 @@
+<div class="col-12 d-flex justify-content-center align-items-center flex-row">
+    <a href="https://www.facebook.com/sharer/sharer.php?u={{ absolute_url(path('post.show', {slug: post.slug})) }}" class="p-3">
+       <img src="https://cdn.icon-icons.com/icons2/1645/PNG/96/facebook_109862.png" width="50" alt="facebook">
+    </a>
+    <a href="https://twitter;com/intent/tweet?text={{ post.title|url_encode}}%20{{ absolute_url(path('post.show', {slug: post.slug})) }}%20@HoussArtGallery" class="p-3">
+       <img src="https://cdn.icon-icons.com/icons2/1211/PNG/128/1491579542-yumminkysocialmedia22_83078.png" width="45" alt="twiter">
+    </a>
+</div>
