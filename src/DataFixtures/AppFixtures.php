@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Mark;
 use App\Entity\Post;
+use App\Entity\Category;
 use App\Entity\User;
 use App\Entity\Products;
 use App\Entity\Colletion;
@@ -149,6 +150,16 @@ class AppFixtures extends Fixture
 
 
             $manager->persist($post);
+        }
+
+        //category
+        for ($k = 0; $k < 10; $k++) {
+            $category = new Category();
+            $category->setName($this->faker->words(1, true) . ' ' . $k)
+                ->setDescription(mt_rand(0, 1) === 1 ? $this->faker->realText(254) : null);
+
+
+            $manager->persist($category);
         }
 
 

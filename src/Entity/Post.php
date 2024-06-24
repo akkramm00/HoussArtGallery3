@@ -2,9 +2,13 @@
 
 namespace App\Entity;
 
+use App\Entity\Category;
 use Cocur\Slugify\Slugify;
 use App\Repository\PostRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping\JoinTable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
@@ -52,10 +56,14 @@ class Post
     #[Assert\NotNull()]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'posts')]
+    private Collection $categories;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
+        $this->categories = new ArrayCollection();
     }
 
     #[ORM\PrePersist]
@@ -188,6 +196,30 @@ class Post
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->addPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->$category->removePost($this);
+        }
 
         return $this;
     }
