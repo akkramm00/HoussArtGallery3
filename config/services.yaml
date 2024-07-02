@@ -44,5 +44,8 @@ services:
     App\Entity\Post:
         public: true
 
+    App\Entity\Category:
+        public: true
+
     knp_paginator:
         class: Knp\Component\Pager\Paginator
