@@ -25,7 +25,7 @@ class CategoryFixtures extends Fixture implements DependentFixtureInterface
         $categories = [];
         for ($i = 0; $i < 10; $i++) {
             $category = new Category();
-            $category->setName($faker->words(4, true) . ' ' . $i)
+            $category->setName($faker->words(2, true) . ' ' . $i)
                 ->setSlug($faker->words(4, true) . ' ' . $i)
 
                 ->setDescription(mt_rand(0, 1) === 1 ? $faker->realText(254) : '');
