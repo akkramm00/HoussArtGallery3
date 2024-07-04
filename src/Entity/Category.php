@@ -49,13 +49,13 @@ class Category
     #[JoinTable(name: 'categories_posts')]
     private Collection $posts;
 
-    #[ORM\PrePersist]
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->posts = new ArrayCollection();
     }
 
+    #[ORM\PrePersist]
     public function prePersist()
     {
         $this->slug = (new Slugify())->slugify($this->name);
