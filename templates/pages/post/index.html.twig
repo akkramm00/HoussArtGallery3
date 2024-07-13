@@ -35,7 +35,7 @@
     <div class="container">
         <div class="row title d-flex justify-content-center align-items-center">
             <div class="col-12 d-flex justify-content-center align-items-center text-white text-center">
-            {% if not post.items is same as ([]) %}
+            {% if not posts.items is same as ([]) %}
                 <h1 class="heading fs-1">LES ARTICLES</h1>
             </div>
           
@@ -49,7 +49,7 @@
             <button class="btn-warning px-3 py-3 my-3  fs-3">
                 <a class="text-white text-decoration-none" href="{{ path('post.new') }}">Créer un article</a>
             </button>
-                <h2 class="fs-4 py-4">Il y'a {{ post.getTotalItemCount}} articles au total.</h2>
+                <h2 class="fs-4 py-4">Il y'a {{ posts.getTotalItemCount}} articles au total.</h2>
             </div>
 
             <div class="col-10 d-flex justify-content-center align-items-center text-center ">
@@ -66,7 +66,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for post in post %}
+                        {% for post in posts %}
                         <tr>
                             <th  class="d-flex justify-content-center align-items-center text-warning">{{ post.id }}</th>
                             <th>{{ post.title }}</th>
@@ -85,7 +85,7 @@
             </div>
 
             <div class="pagination pagination-lg col-10 d-flex justify-content-center align-items-center my-4">
-                {{ knp_pagination_render(post) }}
+                {{ knp_pagination_render(posts) }}
             </div>
             {% else %}
             <h4> Il n'y a pas d'articles </H4>

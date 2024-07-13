@@ -19,21 +19,21 @@ class CategoryController extends AbstractController
     #[Route('/{slug}', name: 'category.index.public', methods: ['GET'])]
     public function index(
         Category $category,
-        PostRepository $repository,
-        PaginatorInterface $paginator,
+        PostRepository $postRepository,
         Request $request
     ): Response {
-        $cache = new FilesystemAdapter();
-        $data = $cache->get('posts', function (ItemInterface $item) use ($repository) {
-            $item->expiresAfter(15);
-            return $repository->findPublished();
-        });
+        // $cache = new FilesystemAdapter();
+        // $data = $cache->get('posts', function (ItemInterface $item) use ($repository) {
+        //     $item->expiresAfter(15);
+        //     return $repository->findPublished();
+        // });
 
-        $posts = $paginator->paginate(
-            $data,
-            $request->query->getInt('page', 1),
-            9
-        );
+        // $posts = $paginator->paginate(
+        //     $data,
+        //     $request->query->getInt('page', 1),
+        //     9
+        // );
+        $posts = $postRepository->findPublished($request->query->getInt('page', 1), $category);
 
         return $this->render('pages/category/index.html.twig', [
             'category' => $category,
