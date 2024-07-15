@@ -46,7 +46,7 @@ class Category
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\ManyToMany(targetEntity: Post::class, inversedBy: 'categories')]
-    #[JoinTable(name: 'categories_posts')]
+    #[JoinTable(name: 'category_post')]
     private Collection $posts;
 
     public function __construct()
