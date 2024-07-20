@@ -217,7 +217,7 @@ class Post
     public function removeCategory(Category $category): self
     {
         if (!$this->categories->contains($category)) {
-            $this->$category->removePost($this);
+            $category->removePost($this);
         }
 
         return $this;

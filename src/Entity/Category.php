@@ -43,10 +43,11 @@ class Category
     private ?string $imageName = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank()]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\ManyToMany(targetEntity: Post::class, inversedBy: 'categories')]
-    #[JoinTable(name: 'category_post')]
+    #[JoinTable(name: 'categories_posts')]
     private Collection $posts;
 
     public function __construct()
@@ -157,7 +158,7 @@ class Category
         return $this;
     }
 
-    public function removePosts(Post $post): self
+    public function removePost(Post $post): self
     {
         $this->posts->removeElement($post);
 
