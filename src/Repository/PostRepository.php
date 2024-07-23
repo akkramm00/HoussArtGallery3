@@ -44,16 +44,14 @@ class PostRepository extends ServiceEntityRepository
             ->setParameter('state', '%STATE_PUBLISHED%')
             ->addOrderBy('p.createdAt', 'DESC');
 
-        if (isset($category)) {
-            $data = $data
-                ->andWhere('c.id LIKE :category')
+        if ($category) {
+            $data->andWhere('c.id = :category')
                 ->setParameter('category', $category->getId());
         }
 
-        $data->getQuery()
-            ->getResult();
+        $query = $data->getQuery();
 
-        $posts = $this->paginatorInterface->paginate($data, $page, 9);
+        $posts = $this->paginatorInterface->paginate($query, $page, 9);
 
         return $posts;
     }

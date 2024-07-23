@@ -29,14 +29,17 @@ class PostController extends AbstractController
         Request $request
     ): Response {
         $this->denyAccessUnlessGranted('ROLE_USER');
-        // $post = $paginator->paginate(
-        //     $repository->findPublished(),
-        //     $request->query->getInt('page', 1),
-        //     10
-        // );
+        $post = $paginator->paginate(
+            $repository->findBy(
+                ['state' => 'STATE_PUBLISHED'],
+                ['createdAt' => 'DESC']
+            ),
+            $request->query->getInt('page', 1),
+            10
+        );
 
         return $this->render('/pages/post/index.html.twig', [
-            'posts' => $repository->findPublished($request->query->getInt('page', 1))
+            'posts' => $post
 
         ]);
     }
@@ -172,21 +175,24 @@ class PostController extends AbstractController
         PaginatorInterface $paginator,
         Request $request
     ): Response {
-        // $cache = new FilesystemAdapter();
-        // $data = $cache->get('posts', function (ItemInterface $item) use ($repository) {
-        //     $item->expiresAfter(15);
-        //     return $repository->findPublished();
-        // });
+        $cache = new FilesystemAdapter();
+        $data = $cache->get('posts', function (ItemInterface $item) use ($repository) {
+            $item->expiresAfter(15);
+            return $repository->findBy(
+                ['state' => 'STATE_PUBLISHED'],
+                ['createdAt' => 'DESC']
+            );
+        });
 
-        // $posts = $paginator->paginate(
-        //     $data,
-        //     $request->query->getInt('page', 1),
-        //     12
-        // );
+        $posts = $paginator->paginate(
+            $data,
+            $request->query->getInt('page', 1),
+            12
+        );
 
 
         return $this->render('pages/post/index_public.html.twig', [
-            'posts' => $repository->findPublished($request->query->getInt('page', 1))
+            'posts' => $posts
         ]);
     }
     /************************************************************* */
