@@ -55,4 +55,20 @@ class PostRepository extends ServiceEntityRepository
 
         return $posts;
     }
+
+    public function findPublicPost(?int $nbPost): array
+    {
+        $queryBuilder = $this->createQueryBuilder('p'); // Utilisez "createQueryBuilder" au lieu de "creatQueryBuilder"
+        $queryBuilder->select('p')
+            ->where('p.state LIKE :state')
+            ->setParameter('state', '%STATE_PUBLISHED%')
+            ->orderBy('p.createdAt', 'DESC');
+
+        if (!$nbPost !== 0 || !$nbPost !== null) {
+            $queryBuilder->setMaxResults($nbPost);
+        }
+
+        return $queryBuilder->getQuery()
+            ->getResult();
+    }
 }

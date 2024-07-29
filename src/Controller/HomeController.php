@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProductsRepository;
 use App\Repository\ColletionRepository;
 use App\Repository\ReviewRepository;
+use App\Repository\PostRepository;
 
 class HomeController extends AbstractController
 {
@@ -15,12 +16,14 @@ class HomeController extends AbstractController
     public function index(
         ProductsRepository $productsRepository,
         ColletionRepository $colletionRepository,
-        ReviewRepository $reviewRepository
+        ReviewRepository $reviewRepository,
+        PostRepository $postRepository
     ): Response {
         return $this->render('pages/home/index.html.twig', [
             'products' => $productsRepository->findPublicProducts(4),
             'colletion' => $colletionRepository->findPublicColletion(4),
             'review' => $reviewRepository->findPublicReview(4),
+            'posts' => $postRepository->findPublicPost(4),
         ]);
     }
 }

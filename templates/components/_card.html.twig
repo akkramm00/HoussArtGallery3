@@ -1,7 +1,7 @@
 <div class="col-sm-12 col-md-6 col-lg-4 my-3">
-<div class="card h-100">
+    <div class="card h-100">
          <a href="{{ path('post.show', { slug:post.slug }) }}">
-             <img src="{{ vich_uploader_asset(post, 'imageFile') }}" class="card-img-top w-100" alt="...">
+             <img src="{{ vich_uploader_asset(post, 'imageFile') }}" class="card-img-top w-100" alt="image">
          </a>
         <div class="card-body">
              <h1 class="card-text fs-2"><small class="text-warning">Publié Le {{ post.createdAt|date('d/m/Y') }}</small></h1>

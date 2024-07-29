@@ -23,9 +23,9 @@ class CategoryController extends AbstractController
         Request $request
     ): Response {
         // $cache = new FilesystemAdapter();
-        // $data = $cache->get('posts', function (ItemInterface $item) use ($repository) {
+        // $data = $cache->get('posts', function (ItemInterface $item) use ($postRepository) {
         //     $item->expiresAfter(15);
-        //     return $repository->findPublished();
+        //     return $postRepository->findPublished();
         // });
 
         // $posts = $paginator->paginate(
