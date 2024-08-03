@@ -7,6 +7,7 @@ use App\Entity\Products;
 use App\Entity\Contact;
 use App\Entity\Review;
 use App\Entity\User;
+use App\Entity\Post;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -38,5 +39,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Listes des Ventes', 'fas fa-list', Products::class);
         yield MenuItem::linkToCrud('Les Colletions', 'fas fa-box-archive', Colletion::class);
         yield MenuItem::linkToCrud('Listes des Avis clients', 'fas fa-star', Review::class);
+        yield MenuItem::linkToCrud('Listes des Articles', 'fas fa-list', Post::class);
     }
 }
