@@ -39,7 +39,7 @@ class PostCrudController extends AbstractCrudController
             TextField::new('slug'),
             TextEditorField::new('content'),
             TextField::new('imageFile')
-                ->setFormType(VichImageType::class)->onlyWhenCreating(),
+                ->setFormType(VichImageType::class),
             ImageField::new('imageFile')
                 ->setBasePath('public/uploads/images/')->onlyOnIndex()
                 ->setRequired(false),
