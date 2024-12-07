@@ -71,32 +71,7 @@
     }
 </style>
 <!-- HomeSection start -->
-<div class="container-fluid banner d-flex justify-content-center align-items-center ">
-	<div class="row container-fluid">
-
-    	{% for message in app.flashes('success') %}
-    	<div class="alert alert-success mt-4">
-    	 {{ message}}
-    	</div>
-    	{% endfor %}
-			   
-    	<section id="Home" class="col col-sm-12 col-md-9 col-lg-9 home d-flex-colomn justify-content-start align-items-center ">
-			<h2 class="homeParalexEffect text-warning">
-				Bienvenue sur
-    	    </h2>
-			<h1 class="homeParalexEffect text-white d-flex justify-content-center w-100 ">
-				Houss.Art.Gallery
-    	    </h1>
-    	    <p>Plongez au cœur de l'expression artistique,<br>
-    	     où chaque œuvre raconte une histoire unique. <br>
-    	     Laissez-vous emporter dans un voyage visuel inoubliable.</p>
-		</section>  
-    	<span class="col-sm-12 col-md-3 col-lg-3 d-flex justify-content-center align-items-center ">
-			<a href="{{ path('contact.index') }}">NOUS CONTACTER</a>
-			 <a href="{{ path('security.registration')}}">S'INSCRIRE</a>
-		</span>
-	</div>
-</div>
+{% include "components/_homeSection.html.twig" %}
 <!-- HomeSection End -->
 
 <!-- Icons Container Start-->
