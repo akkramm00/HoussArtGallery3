@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ReviewCrudController extends AbstractCrudController
@@ -37,7 +38,8 @@ class ReviewCrudController extends AbstractCrudController
             IdField::new('id')
                 ->hideOnForm(),
             TextField::new('fullName'),
-            TextareaField::new('message'),
+            TextareaField::new('message')
+                ->setFormType(CKEditorType::class),
             TextField::new('imageFile')
                 ->setFormType(VichImageType::class)->onlyWhenCreating(),
             ImageField::new('imageFile')
